@@ -1,3 +1,36 @@
-## Microsoft Open Source Code of Conduct
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+# <a name="office-scripts-in-excel-on-the-web-documentation"></a>Сценарии Office в Excel в веб-документации
+
+Добро пожаловать в репозиторий документации по сценариям Office. В этом репозитории вы найдете исходные файлы документации для сценариев Office и пошаговые руководства. Рекомендуем просматривать эти материалы на сайте [docs.microsoft.com](https://docs.microsoft.com/office-scripts-docs).
+
+> **Примечание**: исходные файлы справочной документации по API сценариев Office можно найти в репозитории [Office-Scripts-Reference-Reference](https://github.com/OfficeDev/office-scripts-docs-reference) . Эти API содержат все возможные операции Excel для сценариев.
+
+## <a name="give-us-your-feedback"></a>Оставьте свой отзыв
+
+Цель репозитория состоит в том, чтобы предоставить разработчикам сведения о сценариях Office. Таким образом, проблемы должны относиться к такому образовательному содержимому. [Отправьте сообщение об ошибке](https://github.com/OfficeDev/office-scripts-docs/issues) для следующих сценариев:
+
+- Сведения, необходимые для успешного выполнения разработки сценариев Office, отсутствуют или неполны.
+- Сведения неточны или устарели.
+- В статьях обнаружены опечатки, грамматические ошибки или другие проблемы.
+- Статьи организованы с непонятным или интуитивно понятным способом.
+
+Если вы видите поведение продукта, отличающееся от документации, укажите как можно больше следующих сведений:
+
+- Номер версии и сборки для клиента, который вы используете.
+- Действия по воспроизведению проблемы.
+- Вывод на консоль и сообщения об ошибках.
+
+Мы также рекомендуем создать вилку проекта, внести исправление и отправить запрос на включение своих изменений. Подробные сведения см. в разделе [Внесите свой вклад в документацию](Contributing.md).
+
+Если ваша неполадка не связана с документацией по сценариям Office, отправьте ее по одному из следующих каналов:
+
+- Чтобы задать вопрос о проектировании сценариев Office или API Office. js, которые запускают скрипты Office, разместите свой вопрос в разделе переполнение стека и пометьте его тегом "https://stackoverflow.com/questions/tagged/office-scripts)Office-Scripts" (.
+- Чтобы сообщить о проблемах с API Office. js, создайте эту ошибку в [репозитории OfficeDev/Office-JS](https://github.com/OfficeDev/office-js), который участники группы разработчиков продукта отслеживают проблемы, обнаруженные клиентами.
+- Чтобы отправить запрос на функции для сценариев Office, опубликовать свою идею на [странице голосовой связи пользователя](https://excel.uservoice.com/forums/274580-excel-for-the-web?category_id=143439), или если запрос компонента уже существует, добавьте свой голос.
+
+## <a name="copyright"></a>Авторское право
+
+© Корпорация Майкрософт (Microsoft Corporation), 2019. Все права защищены.
+
+## <a name="microsoft-open-source-code-of-conduct"></a>Правила поведения Майкрософт, касающиеся обращения с открытым кодом
+
+Этот проект соответствует [правилам поведения Майкрософт, касающимся обращения с открытым кодом](https://opensource.microsoft.com/codeofconduct/). Читайте дополнительные сведения в [разделе вопросов и ответов по правилам поведения](https://opensource.microsoft.com/codeofconduct/faq/) или отправляйте новые вопросы и замечания по адресу [opencode@microsoft.com](mailto:opencode@microsoft.com).

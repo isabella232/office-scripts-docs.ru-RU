@@ -1,0 +1,38 @@
+- name: Документация по сценариям Office
+  href: index.md
+- name: Сценарии Office в Excel в Интернете
+  items:
+    - name: Обзор
+      href: overview/excel.md
+    - name: Учебники
+      items:
+        - name: Основы сценариев Office
+          href: tutorials/excel-tutorial.md
+        - name: Считывание данных книги с помощью сценария
+          href: tutorials/excel-read-tutorial.md
+    - name: Основные сведения о скриптах
+      href: develop/scripting-fundamentals.md
+    - name: Концепции
+      items:
+        - name: Встроенные объекты JavaScript
+          href: develop/javascript-objects.md
+        - name: Среда редактора кода
+          href: overview/code-editor-environment.md
+        - name: Различия между сценариями Office и надстройками Office
+          href: resources/add-ins-differences.md
+        - name: Отмена эффектов сценария Office
+          href: testing/undo.md
+    - name: Устранение неполадок
+      href: testing/troubleshooting.md
+    - name: Примеры
+      items:
+        - name: Примеры сценариев
+          href: resources/excel-samples.md
+        - name: Сценарии
+          items:
+            - name: Обзор
+              href: resources/scenarios/sample-scenario-overview.md
+            - name: Анализ загружаемых веб-файлов
+              href: resources/scenarios/analyze-web-downloads.md
+            - name: Калькулятор категории
+              href: resources/scenarios/grade-calculator.md
