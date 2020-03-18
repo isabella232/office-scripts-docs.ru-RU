@@ -1,0 +1,53 @@
+---
+title: Сценарии Office в Excel в Интернете
+description: Краткое введение в регистратор действий и редактор кода для сценариев Office.
+ms.date: 02/24/2020
+localization_priority: Priority
+ms.openlocfilehash: dd48467bc8105a3d31d9fa21e547c703e9e37cce
+ms.sourcegitcommit: b075eed5a6f275274fbbf6d62633219eac416f26
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 03/10/2020
+ms.locfileid: "42700432"
+---
+# <a name="office-scripts-in-excel-on-the-web-preview"></a><span data-ttu-id="a00ef-103">Сценарии Office в Excel в Интернете (предварительный просмотр)</span><span class="sxs-lookup"><span data-stu-id="a00ef-103">Office Scripts in Excel on the web (preview)</span></span>
+
+<span data-ttu-id="a00ef-104">Сценарии Office в Excel в Интернете позволяют автоматизировать повседневные задачи.</span><span class="sxs-lookup"><span data-stu-id="a00ef-104">Office Scripts in Excel on the web let you automate your day-to-day tasks.</span></span> <span data-ttu-id="a00ef-105">Вы можете записывать свои действия в Excel с помощью Action Recorder, который создает скрипт.</span><span class="sxs-lookup"><span data-stu-id="a00ef-105">You can record your Excel actions with the Action Recorder, which creates a script.</span></span> <span data-ttu-id="a00ef-106">Вы также можете создавать и редактировать сценарии с помощью редактора кода.</span><span class="sxs-lookup"><span data-stu-id="a00ef-106">You can also create and edit scripts with the Code Editor.</span></span> <span data-ttu-id="a00ef-107">Эта серия документов научит вас, как использовать эти инструменты.</span><span class="sxs-lookup"><span data-stu-id="a00ef-107">This series of documents teaches you how to use these tools.</span></span> <span data-ttu-id="a00ef-108">Вы познакомитесь с регистратором действий и узнаете, как записывать ваши частые действия в Excel.</span><span class="sxs-lookup"><span data-stu-id="a00ef-108">You'll be introduced to the Action Recorder and see how to record your frequent Excel actions.</span></span> <span data-ttu-id="a00ef-109">Вы также узнаете, как создавать или обновлять свои собственные сценарии с помощью редактора кода.</span><span class="sxs-lookup"><span data-stu-id="a00ef-109">You'll also learn how to make or update your own scripts with the Code Editor.</span></span>
+
+<br>
+
+> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE4qdFF]
+
+[!INCLUDE [Preview note](../includes/preview-note.md)]
+
+## <a name="when-to-use-office-scripts"></a><span data-ttu-id="a00ef-110">Когда использовать офисные сценарии</span><span class="sxs-lookup"><span data-stu-id="a00ef-110">When to use Office Scripts</span></span>
+
+<span data-ttu-id="a00ef-111">Скрипты позволяют записывать и воспроизводить ваши действия Excel в различных рабочих книгах и таблицах.</span><span class="sxs-lookup"><span data-stu-id="a00ef-111">Scripts allow you to record and replay your Excel actions on different workbooks and worksheets.</span></span> <span data-ttu-id="a00ef-112">Если вы обнаружите, что снова и снова делаете одни и те же вещи, сценарий Office может помочь вам, сводя весь рабочий процесс к нажатию одной кнопки.</span><span class="sxs-lookup"><span data-stu-id="a00ef-112">If you find yourself doing the same things over and over again, an Office Script can help you by reducing your whole workflow to a single button press.</span></span>
+
+<span data-ttu-id="a00ef-113">Например, скажем, вы начинаете свой рабочий день, открыв файл .csv с сайта учета в Excel.</span><span class="sxs-lookup"><span data-stu-id="a00ef-113">As an example, say you start your work day by opening a .csv file from an accounting site in Excel.</span></span> <span data-ttu-id="a00ef-114">Затем вы тратите несколько минут на удаление ненужных столбцов, форматирование таблицы, добавление формул и создание сводной таблицы на новом листе.</span><span class="sxs-lookup"><span data-stu-id="a00ef-114">You then spend several minutes deleting unnecessary columns, formatting a table, adding formulas, and creating a PivotTable in a new worksheet.</span></span> <span data-ttu-id="a00ef-115">Те действия, которые вы повторяете ежедневно, можно записать один раз с помощью регистратора действий.</span><span class="sxs-lookup"><span data-stu-id="a00ef-115">Those actions you repeat daily can be recorded once with the Action Recorder.</span></span> <span data-ttu-id="a00ef-116">В дальнейшем запуск скрипта позаботится обо всей конвертации .csv.</span><span class="sxs-lookup"><span data-stu-id="a00ef-116">For then on, running the script will take care of your entire .csv conversion.</span></span> <span data-ttu-id="a00ef-117">Вы не только устраните риск забывания шагов, но и сможете поделиться своим процессом с другими, не обучая их чему-либо.</span><span class="sxs-lookup"><span data-stu-id="a00ef-117">You'll not only remove the risk of forgetting steps, but be able to share your process with others without having to teach them anything.</span></span> <span data-ttu-id="a00ef-118">Сценарии Office автоматизируют ваши общие задачи, чтобы вы и ваше рабочее место могли быть более эффективными и продуктивными.</span><span class="sxs-lookup"><span data-stu-id="a00ef-118">Office Scripts automate your common tasks so you and your workplace can be more efficient and productive.</span></span>
+
+## <a name="action-recorder"></a><span data-ttu-id="a00ef-119">Рекордер действий</span><span class="sxs-lookup"><span data-stu-id="a00ef-119">Action Recorder</span></span>
+
+![Рекордер действий после записи нескольких действий.](../images/action-recorder-intro.png)
+
+<span data-ttu-id="a00ef-121">Рекордер действий записывает действия, которые вы выполняете в Excel, и переводит их в сценарий.</span><span class="sxs-lookup"><span data-stu-id="a00ef-121">The Action Recorder records actions you take in Excel and translates them into a script.</span></span> <span data-ttu-id="a00ef-122">Когда запущен рекордер действий, вы можете захватывать действия Excel при редактировании ячеек, изменении форматирования и создании таблиц.</span><span class="sxs-lookup"><span data-stu-id="a00ef-122">With the Action recorder running, you can capture the Excel actions as you edit cells, change formatting, and create tables.</span></span> <span data-ttu-id="a00ef-123">Полученный сценарий можно запускать на других листах и рабочих книгах, чтобы воссоздать исходные действия.</span><span class="sxs-lookup"><span data-stu-id="a00ef-123">The resulting script can be run on other worksheets and workbooks to recreate your original actions.</span></span>
+
+## <a name="code-editor"></a><span data-ttu-id="a00ef-124">Редактор кода</span><span class="sxs-lookup"><span data-stu-id="a00ef-124">Code Editor</span></span>
+
+![Редактор кода, показывающий код скрипта для вышеуказанного скрипта.](../images/code-editor-intro.png)
+
+<span data-ttu-id="a00ef-126">Все сценарии, записанные с помощью Action Recorder, можно редактировать с помощью редактора кода.</span><span class="sxs-lookup"><span data-stu-id="a00ef-126">All scripts recorded with the Action Recorder can be edited through the Code Editor.</span></span> <span data-ttu-id="a00ef-127">Это позволяет настроить и настроить скрипт, чтобы он лучше соответствовал вашим потребностям.</span><span class="sxs-lookup"><span data-stu-id="a00ef-127">This lets you tweak and customize the script to better suit your exact needs.</span></span> <span data-ttu-id="a00ef-128">Вы также можете добавить логику и функциональные возможности, которые напрямую недоступны через пользовательский интерфейс Excel, такие как условные операторы (если / еще) и циклы.</span><span class="sxs-lookup"><span data-stu-id="a00ef-128">You can also add logic and functionality that is not directly accessible through the Excel UI, such as conditional statements (if/else) and loops.</span></span>
+
+<span data-ttu-id="a00ef-129">Один из простых способов начать изучение возможностей Office Scripts - это запись сценариев в Excel в Интернете и просмотр полученного кода.</span><span class="sxs-lookup"><span data-stu-id="a00ef-129">One easy way to start learning the capabilities of Office Scripts is to record scripts in Excel on the web and view the resulting code.</span></span> <span data-ttu-id="a00ef-130">Другой вариант заключается в том, чтобы следовать нашим [учебным пособиям](../tutorials/excel-tutorial.md), чтобы учиться более структурированным образом.</span><span class="sxs-lookup"><span data-stu-id="a00ef-130">Another option is to follow our [tutorials](../tutorials/excel-tutorial.md) to learn in a more guided and structured way.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="a00ef-131">Дальнейшие действия</span><span class="sxs-lookup"><span data-stu-id="a00ef-131">Next steps</span></span>
+
+<span data-ttu-id="a00ef-132">Завершите [руководство по сценариям Office в Microsoft Excel в Интернете](../tutorials/excel-tutorial.md), чтобы узнать, как создавать свои первые сценарии Office.</span><span class="sxs-lookup"><span data-stu-id="a00ef-132">Complete the [Office Scripts in Excel on the web tutorial](../tutorials/excel-tutorial.md) to learn how to create your first Office Scripts.</span></span>
+
+## <a name="see-also"></a><span data-ttu-id="a00ef-133">См. также</span><span class="sxs-lookup"><span data-stu-id="a00ef-133">See also</span></span>
+
+- [<span data-ttu-id="a00ef-134">Основные сведения о сценариях Office в Excel в Интернете</span><span class="sxs-lookup"><span data-stu-id="a00ef-134">Scripting fundamentals for Office Script in Excel on the web</span></span>](../develop/scripting-fundamentals.md)
+- [<span data-ttu-id="a00ef-135">Справочник API для сценариев Office</span><span class="sxs-lookup"><span data-stu-id="a00ef-135">Office Scripts API reference</span></span>](/javascript/api/office-scripts/overview)
+- [<span data-ttu-id="a00ef-136">Устранение неполадок в сценариях Office</span><span class="sxs-lookup"><span data-stu-id="a00ef-136">Troubleshooting Office Scripts</span></span>](../testing/troubleshooting.md)
+- [<span data-ttu-id="a00ef-137">Параметры сценариев Office в M365</span><span class="sxs-lookup"><span data-stu-id="a00ef-137">Office Scripts settings in M365</span></span>](https://support.office.com/article/office-scripts-settings-in-m365-19d3c51a-6ca2-40ab-978d-60fa49554dcf)
+- [<span data-ttu-id="a00ef-138">Общие сведения о сценариях Office в Excel (на сайте support.office.com)</span><span class="sxs-lookup"><span data-stu-id="a00ef-138">Introduction to Office Scripts in Excel (on support.office.com)</span></span>](https://support.office.com/article/introduction-to-office-scripts-in-excel-9fbe283d-adb8-4f13-a75b-a81c6baf163a)
