@@ -1,20 +1,22 @@
 ---
 title: Различия между сценариями Office и надстройками Office
 description: Различия в поведении и API между сценариями Office и надстройками Office.
-ms.date: 12/12/2019
+ms.date: 03/23/2020
 localization_priority: Normal
-ms.openlocfilehash: 4626afb66b54c94a72f29b039c601435c089d64d
-ms.sourcegitcommit: b075eed5a6f275274fbbf6d62633219eac416f26
+ms.openlocfilehash: 2290d4e34b7a7286d67443de9e9c64bad4fcd4b7
+ms.sourcegitcommit: d556aaefac80e55f53ac56b7f6ecbc657ebd426f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "42700396"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "42978728"
 ---
 # <a name="differences-between-office-scripts-and-office-add-ins"></a>Различия между сценариями Office и надстройками Office
 
 Надстройки Office и сценарии Office широко распространены. Они оба предоставляют автоматизированный контроль над книгой Excel с `Excel` помощью пространства имен API JavaScript для Office. Однако в их области более ограничены скрипты Office.
 
-Сценарии Office выполняются с нажатием кнопки вручную, а надстройки Office основываются на взаимодействии с пользователем и остаются во время использования книги. Если расширение Excel должно превышать возможности платформы сценариев, посетите [документацию по надстройкам Office](/office/dev/add-ins) , чтобы узнать больше о надстройках Office.
+![Схема из четырех квадрантов, в которой показаны области фокуса для различных решений по расширению Office. Сценарии Office и веб-надстройки Office ориентированы на Интернет и совместную работу, но сценарии Office ориентированы на конечных пользователей (в то время как веб-надстройки Office предназначены для профессиональных разработчиков).)](../images/office-programmability-diagram.png)
+
+Сценарии Office выполняются с помощью нажатия кнопки вручную или в качестве этапа [автоматизированного управления](https://flow.microsoft.com/), в то время как надстройки Office остаются открытыми при открытии их областей задач. Это означает, что надстройки могут сохранять состояние во время сеанса, в то время как сценарии Office не поддерживают внутреннее состояние между запусками. Если расширение Excel должно превышать возможности платформы сценариев, посетите [документацию по надстройкам Office](/office/dev/add-ins) , чтобы узнать больше о надстройках Office.
 
 В оставшейся части этой статьи описываются основные различия между надстройками Office и сценариями Office.
 
@@ -39,5 +41,6 @@ ms.locfileid: "42700396"
 ## <a name="see-also"></a>См. также
 
 - [Сценарии Office в Excel в Интернете](../overview/excel.md)
-- [Устранение неполадок сценариев Office](../testing/troubleshooting.md)
+- [Различия между сценариями Office и макросами VBA](vba-differences.md)
+- [Устранение неполадок в сценариях Office](../testing/troubleshooting.md)
 - [Создание надстройки области задач Excel](/office/dev/add-ins/quickstarts/excel-quickstart-jquery)

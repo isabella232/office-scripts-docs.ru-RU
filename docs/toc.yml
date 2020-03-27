@@ -10,14 +10,16 @@
           href: tutorials/excel-tutorial.md
         - name: Считывание данных книги с помощью сценария
           href: tutorials/excel-read-tutorial.md
-    - name: Основные сведения о скриптах
+    - name: Основы сценариев
       href: develop/scripting-fundamentals.md
-    - name: Концепции
+    - name: Понятия
       items:
         - name: Встроенные объекты JavaScript
           href: develop/javascript-objects.md
         - name: Среда редактора кода
           href: overview/code-editor-environment.md
+        - name: Различия между сценариями Office и макросами VBA
+          href: resources/vba-differences.md
         - name: Различия между сценариями Office и надстройками Office
           href: resources/add-ins-differences.md
         - name: Отмена эффектов сценария Office
