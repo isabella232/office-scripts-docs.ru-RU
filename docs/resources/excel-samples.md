@@ -1,20 +1,20 @@
 ---
 title: Примеры сценариев для сценариев Office в Excel в Интернете
 description: Коллекция примеров кода для использования со сценариями Office в Excel в Интернете.
-ms.date: 02/19/2020
+ms.date: 04/06/2020
 localization_priority: Normal
-ms.openlocfilehash: abb4064dfde8b644035e725832e481e6463e979e
-ms.sourcegitcommit: b075eed5a6f275274fbbf6d62633219eac416f26
+ms.openlocfilehash: abf6b87b63ad027cca8ee5c947b687f54815409c
+ms.sourcegitcommit: 0b2232c4c228b14d501edb8bb489fe0e84748b42
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "42700417"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "43191010"
 ---
 # <a name="sample-scripts-for-office-scripts-in-excel-on-the-web-preview"></a>Примеры сценариев для сценариев Office в Excel в Интернете (Предварительная версия)
 
 Ниже приведены примеры простых сценариев, которые можно использовать в собственных книгах. Чтобы использовать их в Excel в Интернете, выполните следующие действия:
 
-1. Откройте вкладку **Автоматизация** .
+1. Откройте вкладку **Автоматизировать**.
 2. Нажмите клавишу **Редактор кода**.
 3. Нажмите **новый скрипт** в области задач редактора кода.
 4. Замените весь сценарий выбранным образцом.
@@ -47,7 +47,9 @@ async function main(context: Excel.RequestContext) {
 
 ### <a name="work-with-dates"></a>Работать с датами
 
-В этом примере используется объект JavaScript [Date](https://developer.mozilla.org/docs/web/javascript/reference/global_objects/date) для получения текущей даты и времени, а затем эти значения записываются в две ячейки активного листа.
+В примерах, приведенных в этом разделе, показано, как использовать объект JavaScript [Date](https://developer.mozilla.org/docs/web/javascript/reference/global_objects/date) .
+
+В следующем примере возвращается текущая дата и время, а затем эти значения записываются в две ячейки активного листа.
 
 ```TypeScript
 async function main(context: Excel.RequestContext) {
@@ -63,6 +65,22 @@ async function main(context: Excel.RequestContext) {
   
   // Add the time string to B1.
   timeRange.values = [[date.toLocaleTimeString()]];
+}
+```
+
+В следующем примере считывается дата, которая хранится в Excel, и преобразуется в объект даты JavaScript. В качестве входных данных для даты JavaScript в качестве входных данных используется [числовой серийный номер даты](https://support.office.com/article/now-function-3337fd29-145a-4347-b2e6-20c904739c46) .
+
+```TypeScript
+async function main(context: Excel.RequestContext) {
+  // Read a date at cell A1 from Excel.
+  let dateRange = context.workbook.worksheets.getActiveWorksheet().getRange("A1");
+  dateRange.load("values");
+  await context.sync();
+
+  // Convert the Excel date to a JavaScript Date object.
+  let excelDateValue = dateRange.values[0][0];
+  let javaScriptDate = new Date(Math.round((excelDateValue - 25569) * 86400 * 1000));
+  console.log(javaScriptDate);
 }
 ```
 

@@ -1,14 +1,14 @@
 ---
 title: Использование встроенных объектов JavaScript в сценариях Office
 description: Как вызывать встроенные API JavaScript из скрипта Office в Excel в Интернете.
-ms.date: 01/21/2020
+ms.date: 04/06/2020
 localization_priority: Normal
-ms.openlocfilehash: e0fcd98117125ead18e55675e195415ff59c0c5d
-ms.sourcegitcommit: b075eed5a6f275274fbbf6d62633219eac416f26
+ms.openlocfilehash: a4b698215edea5f266e159fee0e08690904dd379
+ms.sourcegitcommit: 0b2232c4c228b14d501edb8bb489fe0e84748b42
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "42700354"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "43191017"
 ---
 # <a name="using-built-in-javascript-objects-in-office-scripts"></a>Использование встроенных объектов JavaScript в сценариях Office
 
@@ -94,7 +94,7 @@ async function main(context: Excel.RequestContext) {
 }
 ```
 
-## <a name="date"></a>Date
+## <a name="date"></a>Дата
 
 Объект [Date](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date) предоставляет стандартизированный способ работы с датами в скрипте. `Date.now()`Создает объект с текущей датой и временем, который полезен при добавлении меток времени к записи данных в скрипте.
 
@@ -112,6 +112,8 @@ async function main(context: Excel.RequestContext) {
   range.values = [[date.toLocaleDateString()]];
 }
 ```
+
+В разделе " [трудозатраты с датами](../resources/excel-samples.md#work-with-dates) " в примерах имеются дополнительные скрипты, связанные с датами.
 
 ## <a name="math"></a>математика;
 
