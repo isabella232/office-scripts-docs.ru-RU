@@ -4,15 +4,15 @@
   items:
     - name: Обзор
       href: overview/excel.md
-    - name: Учебники
+    - name: Учебные материалы
       items:
-        - name: Основы сценариев Office
+        - name: Основы работы со сценариями Office
           href: tutorials/excel-tutorial.md
-        - name: Считывание данных книги с помощью сценария
+        - name: Чтение данных книги с помощью сценария
           href: tutorials/excel-read-tutorial.md
     - name: Основы сценариев
       href: develop/scripting-fundamentals.md
-    - name: Понятия
+    - name: Концепции
       items:
         - name: Встроенные объекты JavaScript
           href: develop/javascript-objects.md
@@ -22,7 +22,7 @@
           href: resources/vba-differences.md
         - name: Различия между сценариями Office и надстройками Office
           href: resources/add-ins-differences.md
-        - name: Отмена эффектов сценария Office
+        - name: Отменить эффекты сценария Office
           href: testing/undo.md
     - name: Устранение неполадок
       href: testing/troubleshooting.md
@@ -34,7 +34,7 @@
           items:
             - name: Обзор
               href: resources/scenarios/sample-scenario-overview.md
-            - name: Анализ загружаемых веб-файлов
+            - name: Анализ загруженного из Интернета
               href: resources/scenarios/analyze-web-downloads.md
-            - name: Калькулятор категории
+            - name: Калькулятор оценок
               href: resources/scenarios/grade-calculator.md
