@@ -1,5 +1,5 @@
 ---
-title: Устранение неполадок сценариев Office
+title: Устранение неполадок в сценариях Office
 description: Советы и методы отладки сценариев Office, а также справочные ресурсы.
 ms.date: 12/13/2019
 localization_priority: Normal
@@ -10,7 +10,7 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 03/10/2020
 ms.locfileid: "42700357"
 ---
-# <a name="troubleshooting-office-scripts"></a>Устранение неполадок сценариев Office
+# <a name="troubleshooting-office-scripts"></a>Устранение неполадок в сценариях Office
 
 Когда вы разрабатываете сценарии Office, вы можете делать ошибки. Всё в порядке. У нас есть инструменты, которые помогают находить проблемы и работать с ними в идеальном состоянии.
 
@@ -48,4 +48,4 @@ console.log(myRange.address);
 
 - [Сценарии Office в Excel в Интернете](../overview/excel.md)
 - [Основные сведения о сценариях для сценариев Office в Excel в Интернете](../develop/scripting-fundamentals.md)
-- [Отмена эффектов сценария Office](undo.md)
+- [Отменить эффекты сценария Office](undo.md)
