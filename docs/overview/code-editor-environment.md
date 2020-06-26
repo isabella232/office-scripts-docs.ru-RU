@@ -1,14 +1,14 @@
 ---
 title: Среда редактора кода сценариев Office
 description: Сведения о необходимых компонентах и среде для сценариев Office в Excel в Интернете.
-ms.date: 04/08/2020
+ms.date: 04/24/2020
 localization_priority: Normal
-ms.openlocfilehash: 6b26adf886172f085980bed0488b4aa7a6815991
-ms.sourcegitcommit: b13dedb5ee2048f0a244aa2294bf2c38697cb62c
+ms.openlocfilehash: efe6ddbe39a1ea3850b4dc6fea0fa885b80c0c28
+ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/10/2020
-ms.locfileid: "43215268"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "44878670"
 ---
 # <a name="office-scripts-code-editor-environment"></a>Среда редактора кода сценариев Office
 
@@ -25,7 +25,7 @@ ms.locfileid: "43215268"
 
 ## <a name="office-scripts-javascript-api"></a>API JavaScript для сценариев Office
 
-Сценарии Office используют специальную версию API JavaScript для Office, которые используются надстройками [Office](/office/dev/add-ins/overview/index). Различия между этими двумя платформами описаны в статье [различия между сценариями Office и](../resources/add-ins-differences.md#apis) статьей надстройки Office. Вы можете просмотреть все API, доступные в сценарии, в [справочной документации по API для Office](/javascript/api/office-scripts/overview).
+Сценарии Office используют специальную версию API JavaScript для Office для надстроек [Office](/office/dev/add-ins/overview/index). Хотя в двух API есть сходства, не следует предполагать, что код можно перенести между двумя платформами. Различия между этими двумя платформами описаны в статье [различия между сценариями Office и](../resources/add-ins-differences.md#apis) статьей надстройки Office. Вы можете просмотреть все API, доступные в сценарии, в [справочной документации по API для Office](/javascript/api/office-scripts/overview).
 
 ## <a name="intellisense"></a>IntelliSense
 

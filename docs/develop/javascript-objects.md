@@ -1,14 +1,14 @@
 ---
 title: Использование встроенных объектов JavaScript в сценариях Office
 description: Как вызывать встроенные API JavaScript из скрипта Office в Excel в Интернете.
-ms.date: 04/08/2020
+ms.date: 04/24/2020
 localization_priority: Normal
-ms.openlocfilehash: 54cadb6e9ce60e631488bbe7de00c29a6db35eb7
-ms.sourcegitcommit: b13dedb5ee2048f0a244aa2294bf2c38697cb62c
+ms.openlocfilehash: b5d70e77aef79c38a8cfd680c9d03bb126c402b2
+ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/10/2020
-ms.locfileid: "43215261"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "44878537"
 ---
 # <a name="using-built-in-javascript-objects-in-office-scripts"></a>Использование встроенных объектов JavaScript в сценариях Office
 
@@ -23,27 +23,25 @@ JavaScript предоставляет несколько встроенных о
 
 ### <a name="working-with-ranges"></a>Работа с диапазонами
 
-Диапазоны содержат несколько двухмерных массивов, которые напрямую сопоставляются с ячейками в этом диапазоне. К ним относятся такие свойства `values`, `formulas`как, `numberFormat`и. Свойства типа array должны [загружаться](scripting-fundamentals.md#sync-and-load) так же, как и любые другие свойства.
+Диапазоны содержат несколько двухмерных массивов, которые напрямую сопоставляются с ячейками в этом диапазоне. Эти массивы содержат конкретные сведения о каждой ячейке в этом диапазоне. Например, `Range.getValues` возвращает все значения в этих ячейках (со строками и столбцами, которые сопоставлены с двумерным массивом, на строки и столбцы этого подраздела листа). `Range.getFormulas`и `Range.getNumberFormats` это часто используемые методы, возвращающие массивы, такие как `Range.getValues` .
 
 Следующий сценарий выполняет поиск любого числового формата в диапазоне **a1: D4** для любого числового формата, содержащего "$". В этом сценарии для цвета заливки в ячейках задается значение "Yellow".
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
+function main(workbook: ExcelScript.Workbook) {
   // Get the range From A1 to D4.
-  let range = context.workbook.worksheets.getActiveWorksheet().getRange("A1:D4");
+  let range = workbook.getActiveWorksheet().getRange("A1:D4");
 
-  // Load the numberFormat property on the range.
-  range.load("numberFormat");
-  await context.sync();
-
+  // Get the number formats for each cell in the range.
+  let rangeNumberFormats = range.getNumberFormats();
   // Iterate through the arrays of rows and columns corresponding to those in the range.
-  range.numberFormat.forEach((rowItem, rowIndex) => {
-    range.numberFormat[rowIndex].forEach((columnItem, columnIndex) => {
+  rangeNumberFormats.forEach((rowItem, rowIndex) => {
+    rangeNumberFormats[rowIndex].forEach((columnItem, columnIndex) => {
       // Treat the numberFormat as a string so we can do text comparisons.
       let columnItemText = columnItem as string;
       if (columnItemText.indexOf("$") >= 0) {
         // Set the cell's fill to yellow.
-        range.getCell(rowIndex, columnIndex).format.fill.color = "yellow";
+        range.getCell(rowIndex, columnIndex).getFormat().getFill().setColor("yellow");
       }
     });
   });
@@ -52,42 +50,38 @@ async function main(context: Excel.RequestContext) {
 
 ### <a name="working-with-collections"></a>Работа с коллекциями
 
-В коллекции присутствует множество объектов Excel. Например, все [фигуры](/javascript/api/office-scripts/excel/excel.shape) на листе включены в [ShapeCollection](/javascript/api/office-scripts/excel/excel.shapecollection) (как `Worksheet.shapes` свойство). Каждый `*Collection` объект содержит `items` свойство, представляющее собой массив, в котором хранятся объекты в этой коллекции. Это можно рассматривать как обычный массив JavaScript, но сначала необходимо загрузить элементы коллекции. Если необходимо работать со свойством для каждого объекта в коллекции, используйте инструкцию-иерархию Load (`items/propertyName`).
+В коллекции присутствует множество объектов Excel. Коллекция управляется API скриптов Office и предоставляется в виде массива. Например, все [фигуры](/javascript/api/office-scripts/excel/excelscript.shape) на листе включены в объект `Shape[]` , возвращаемый `Worksheet.getShapes` методом. Этот массив можно использовать для считывания значений из коллекции или для доступа к определенным объектам из методов родительского объекта `get*` .
+
+> [!NOTE]
+> Не добавляйте и не удаляйте объекты из этих массивов коллекций вручную. Используйте `add` методы для родительских объектов и `delete` методы в объектах типа Collection. Например, добавьте [таблицу](/javascript/api/office-scripts/excel/excelscript.table) на [лист](/javascript/api/office-scripts/excel/excelscript.worksheet) с `Worksheet.addTable` методом и удалите метод `Table` using `Table.delete` .
 
 Следующий сценарий записывает в журнал тип каждой фигуры на текущем листе.
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
+function main(workbook: ExcelScript.Workbook) {
   // Get the current worksheet.
-  let selectedSheet = context.workbook.worksheets.getActiveWorksheet();
+  let selectedSheet = workbook.getActiveWorksheet();
 
   // Get the shapes in this worksheet.
-  let shapes = selectedSheet.shapes;
-  shapes.load("items/type");
-  await context.sync();
+  let shapes = selectedSheet.getShapes();
 
   // Log the type of every shape in the collection.
-  shapes.items.forEach((shape) => {
-    console.log(shape.type);
+  shapes.forEach((shape) => {
+    console.log(shape.getType());
   });
 }
 ```
 
-Можно загружать отдельные объекты из коллекции с помощью методов `getItem` или. `getItemAt` `getItem`Получает объект с помощью уникального идентификатора, такого как имя (такие имена часто задаются сценарием). `getItemAt`Получает объект, используя его индекс в коллекции. Прежде чем использовать объект, перед вызовом необходимо указать `await context.sync();` команду.
-
 Следующий сценарий удаляет самую старую фигуру на текущем листе.
 
 ```Typescript
-async function main(context: Excel.RequestContext) {
+function main(workbook: ExcelScript.Workbook) {
   // Get the current worksheet.
-  let selectedSheet = context.workbook.worksheets.getActiveWorksheet();
+  let selectedSheet = workbook.getActiveWorksheet();
 
   // Get the first (oldest) shape in the worksheet.
   // Note that this script will thrown an error if there are no shapes.
-  let shape = selectedSheet.shapes.getItemAt(0);
-
-  // Sync to load `shape` from the collection.
-  await context.sync();
+  let shape = selectedSheet.getShapes()[0];
 
   // Remove the shape from the worksheet.
   shape.delete();
@@ -98,18 +92,18 @@ async function main(context: Excel.RequestContext) {
 
 Объект [Date](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date) предоставляет стандартизированный способ работы с датами в скрипте. `Date.now()`Создает объект с текущей датой и временем, который полезен при добавлении меток времени к записи данных в скрипте.
 
-Следующий сценарий добавляет текущую дату на лист. Обратите внимание, что `toLocaleDateString` с помощью метода Excel распознает значение как дату и автоматически изменяет формат числа в ячейке.
+Следующий сценарий добавляет текущую дату на лист. Обратите внимание, что с помощью `toLocaleDateString` метода Excel распознает значение как дату и автоматически изменяет формат числа в ячейке.
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
+function main(workbook: ExcelScript.Workbook) {
   // Get the range for cell A1.
-  let range = context.workbook.worksheets.getActiveWorksheet().getRange("A1");
+  let range = workbook.getActiveWorksheet().getRange("A1");
 
   // Get the current date and time.
   let date = new Date(Date.now());
 
   // Set the value at A1 to the current date, using a localized string.
-  range.values = [[date.toLocaleDateString()]];
+  range.setValue(date.toLocaleDateString());
 }
 ```
 
@@ -122,26 +116,25 @@ async function main(context: Excel.RequestContext) {
 Следующий сценарий использует `Math.min` для поиска и записи в журнал наименьшего числа в диапазоне **a1: D4** . Обратите внимание, что в этом примере предполагается, что весь диапазон содержит только цифры, а не строки.
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
+function main(workbook: ExcelScript.Workbook) {
   // Get the range from A1 to D4.
-  let comparisonRange = context.workbook.worksheets.getActiveWorksheet().getRange("A1:D4");
-  
+  let comparisonRange = workbook.getActiveWorksheet().getRange("A1:D4");
+
   // Load the range's values.
-  comparisonRange.load("values");
-  await context.sync();
+  let comparisonRangeValues = comparisonRange.getValues();
 
   // Set the minimum values as the first value.
-  let minimum = comparisonRange.values[0][0];
+  let minimum = comparisonRangeValues[0][0];
 
   // Iterate over each row looking for the smallest value.
-  comparisonRange.values.forEach((rowItem, rowIndex) => {
+  comparisonRangeValues.forEach((rowItem, rowIndex) => {
     // Iterate over each column looking for the smallest value.
-    comparisonRange.values[rowIndex].forEach((columnItem) => {
+    comparisonRangeValues[rowIndex].forEach((columnItem) => {
       // Use `Math.min` to set the smallest value as either the current cell's value or the previous minimum.
       minimum = Math.min(minimum, columnItem);
     });
   });
-  
+
   console.log(minimum);
 }
 

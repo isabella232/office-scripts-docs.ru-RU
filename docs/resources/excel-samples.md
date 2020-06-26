@@ -1,14 +1,14 @@
 ---
 title: Примеры сценариев для сценариев Office в Excel в Интернете
 description: Коллекция примеров кода для использования со сценариями Office в Excel в Интернете.
-ms.date: 04/06/2020
+ms.date: 06/18/2020
 localization_priority: Normal
-ms.openlocfilehash: abf6b87b63ad027cca8ee5c947b687f54815409c
-ms.sourcegitcommit: 0b2232c4c228b14d501edb8bb489fe0e84748b42
+ms.openlocfilehash: bfa6679595e6e28cc5d2ae3e3e487fd3e77738aa
+ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "43191010"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "44878677"
 ---
 # <a name="sample-scripts-for-office-scripts-in-excel-on-the-web-preview"></a>Примеры сценариев для сценариев Office в Excel в Интернете (Предварительная версия)
 
@@ -30,18 +30,80 @@ ms.locfileid: "43191010"
 
 В этом примере считывается значение **a1** и выводится на консоль.
 
-``` TypeScript
-async function main(context: Excel.RequestContext) {
+```typescript
+function main(workbook: ExcelScript.Workbook) {
   // Get the current worksheet.
-  let selectedSheet = context.workbook.worksheets.getActiveWorksheet();
+  let selectedSheet = workbook.getActiveWorksheet();
 
   // Get the value of cell A1.
   let range = selectedSheet.getRange("A1");
-  range.load("values");
-  await context.sync();
-
+  
   // Print the value of A1.
-  console.log(range.values);
+  console.log(range.getValue());
+}
+```
+
+### <a name="read-the-active-cell"></a>Чтение активной ячейки
+
+Этот сценарий записывает в журнал значение текущей активной ячейки. Если выбрано несколько ячеек, в журнал заносится левая верхняя ячейка.
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+  // Get the current active cell in the workbook.
+  let cell = workbook.getActiveCell();
+
+  // Log that cell's value.
+  console.log(`The current cell's value is ${cell.getValue()}`);
+}
+```
+
+### <a name="change-an-adjacent-cell"></a>Изменение смежной ячейки
+
+Этот сценарий получает смежные ячейки, используя относительные ссылки. Обратите внимание, что если активная ячейка находится в верхней строке, часть скрипта завершается с ошибкой, так как она ссылается на ячейку над выбранной в текущий момент.
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+  // Get the currently active cell in the workbook.
+  let activeCell = workbook.getActiveCell();
+  console.log(`The active cell's address is: ${activeCell.getAddress()}`);
+
+  // Get the cell to the right of the active cell and set its value and color.
+  let rightCell = activeCell.getOffsetRange(0,1);
+  rightCell.setValue("Right cell");
+  console.log(`The right cell's address is: ${rightCell.getAddress()}`);
+  rightCell.getFormat().getFont().setColor("Magenta");
+  rightCell.getFormat().getFill().setColor("Cyan");
+
+  // Get the cell to the above of the active cell and set its value and color.
+  // Note that this operation will fail if the active cell is in the top row.
+  let aboveCell = activeCell.getOffsetRange(-1, 0);
+  aboveCell.setValue("Above cell");
+  console.log(`The above cell's address is: ${aboveCell.getAddress()}`);
+  aboveCell.getFormat().getFont().setColor("White");
+  aboveCell.getFormat().getFill().setColor("Black");
+}
+```
+
+### <a name="change-all-adjacent-cells"></a>Изменение всех смежных ячеек
+
+Этот сценарий копирует форматирование в активной ячейке в соседние ячейки. Обратите внимание, что этот скрипт работает только в том случае, если активная ячейка не находится на границе листа.
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+  // Get the active cell.
+  let activeCell = workbook.getActiveCell();
+
+  // Get the cell that's one row above and one column to the left of the active cell.
+  let cornerCell = activeCell.getOffsetRange(-1,-1);
+
+  // Get a range that includes all the cells surrounding the active cell.
+  let surroundingRange = cornerCell.getResizedRange(2, 2)
+
+  // Copy the formatting from the active cell to the new range.
+  surroundingRange.copyFrom(
+    activeCell, /* The source range. */
+    ExcelScript.RangeCopyType.formats /* What to copy. */
+    );
 }
 ```
 
@@ -52,33 +114,31 @@ async function main(context: Excel.RequestContext) {
 В следующем примере возвращается текущая дата и время, а затем эти значения записываются в две ячейки активного листа.
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
+function main(workbook: ExcelScript.Workbook) {
   // Get the cells at A1 and B1.
-  let dateRange = context.workbook.worksheets.getActiveWorksheet().getRange("A1");
-  let timeRange = context.workbook.worksheets.getActiveWorksheet().getRange("B1");
+  let dateRange = workbook.getActiveWorksheet().getRange("A1");
+  let timeRange = workbook.getActiveWorksheet().getRange("B1");
 
   // Get the current date and time with the JavaScript Date object.
   let date = new Date(Date.now());
 
   // Add the date string to A1.
-  dateRange.values = [[date.toLocaleDateString()]];
-  
+  dateRange.setValue(date.toLocaleDateString());
+
   // Add the time string to B1.
-  timeRange.values = [[date.toLocaleTimeString()]];
+  timeRange.setValue(date.toLocaleTimeString());
 }
 ```
 
 В следующем примере считывается дата, которая хранится в Excel, и преобразуется в объект даты JavaScript. В качестве входных данных для даты JavaScript в качестве входных данных используется [числовой серийный номер даты](https://support.office.com/article/now-function-3337fd29-145a-4347-b2e6-20c904739c46) .
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
+function main(workbook: ExcelScript.Workbook) {
   // Read a date at cell A1 from Excel.
-  let dateRange = context.workbook.worksheets.getActiveWorksheet().getRange("A1");
-  dateRange.load("values");
-  await context.sync();
+  let dateRange = workbook.getActiveWorksheet().getRange("A1");
 
   // Convert the Excel date to a JavaScript Date object.
-  let excelDateValue = dateRange.values[0][0];
+  let excelDateValue = dateRange.getValue();
   let javaScriptDate = new Date(Math.round((excelDateValue - 25569) * 86400 * 1000));
   console.log(javaScriptDate);
 }
@@ -93,20 +153,20 @@ async function main(context: Excel.RequestContext) {
 В этом примере применяется условное форматирование для диапазона, используемого в текущий момент на листе. Условное форматирование — Зеленая заливка для первых 10% значений.
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
+function main(workbook: ExcelScript.Workbook) {
   // Get the current worksheet.
-  let selectedSheet = context.workbook.worksheets.getActiveWorksheet();
+  let selectedSheet = workbook.getActiveWorksheet();
 
   // Get the used range in the worksheet.
   let range = selectedSheet.getUsedRange();
 
   // Set the fill color to green for the top 10% of values in the range.
-  let conditionalFormat = range.conditionalFormats.add(Excel.ConditionalFormatType.topBottom);
-  conditionalFormat.topBottom.format.fill.color = "green";
-  conditionalFormat.topBottom.rule = {
+  let conditionalFormat = range.addConditionalFormat(ExcelScript.ConditionalFormatType.topBottom)
+  conditionalFormat.getTopBottom().getFormat().getFill().setColor("green");
+  conditionalFormat.getTopBottom().setRule({
     rank: 10, // The percentage threshold.
-    type: Excel.ConditionalTopBottomCriterionType.topPercent // The type of the top/bottom condition.
-  };
+    type: ExcelScript.ConditionalTopBottomCriterionType.topPercent // The type of the top/bottom condition.
+  });
 }
 ```
 
@@ -115,42 +175,43 @@ async function main(context: Excel.RequestContext) {
 В этом примере создается таблица на основе используемого диапазона текущего листа, а затем она сортируется по первому столбцу.
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
+function main(workbook: ExcelScript.Workbook) {
   // Get the current worksheet.
-  let selectedSheet = context.workbook.worksheets.getActiveWorksheet();
+  let selectedSheet = workbook.getActiveWorksheet();
 
   // Create a table with the used cells.
   let usedRange = selectedSheet.getUsedRange();
-  let newTable = selectedSheet.tables.add(usedRange, true);
+  let newTable = selectedSheet.addTable(usedRange, true);
 
   // Sort the table using the first column.
-  newTable.sort.apply([{ key: 0, ascending: true }]);
+  newTable.getSort().apply([{ key: 0, ascending: true }]);
 }
 ```
 
-## <a name="collaboration"></a>Совместная работа
+### <a name="log-the-grand-total-values-from-a-pivottable"></a>Запись значений "общий итог" из сводной таблицы
 
-В этих примерах показано, как работать с функциями Excel, относящимися к совместной работе, например комментариями.
+В этом примере выполняется поиск первой сводной таблицы в книге и записываются значения в ячейках "общий итог" (выделено зеленым цветом на изображении ниже).
 
-### <a name="delete-resolved-comments"></a>Удаление разрешенных комментариев
-
-В этом примере удаляются все разрешенные комментарии из текущего листа.
+![Сводная таблица продаж фруктов с выделенным зеленым цветом строкой итогов.](../images/sample-pivottable-grand-total-row.png)
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
-  // Get the current worksheet.
-  let selectedSheet = context.workbook.worksheets.getActiveWorksheet();
+function main(workbook: ExcelScript.Workbook) {
+  // Get the first PivotTable in the workbook.
+  let pivotTable = workbook.getPivotTables()[0];
 
-  // Get the comments on this worksheet.
-  let comments = selectedSheet.comments;
-  comments.load("items/resolved");
-  await context.sync();
+  // Get the names of each data column in the PivotTable.
+  let pivotColumnLabelRange = pivotTable.getLayout().getColumnLabelRange();
 
-  // Delete the resolved comments.
-  comments.items.forEach((comment) => {
-      if (comment.resolved) {
-          comment.delete();
-      }
+  // Get the range displaying the pivoted data.
+  let pivotDataRange = pivotTable.getLayout().getRangeBetweenHeaderAndTotal();
+
+  // Get the range with the "grand totals" for the PivotTable columns.
+  let grandTotalRange = pivotDataRange.getLastRow();
+
+  // Print each of the "Grand Totals" to the console.
+  grandTotalRange.getValues()[0].forEach((column, columnIndex) => {
+    console.log(`Grand total of ${pivotColumnLabelRange.getValues()[0][columnIndex]}: ${grandTotalRange.getValues()[0][columnIndex]}`);
+    // Example log: "Grand total of Sum of Crates Sold Wholesale: 11000"
   });
 }
 ```

@@ -1,14 +1,14 @@
 ---
 title: Устранение неполадок в сценариях Office
 description: Советы и методы отладки сценариев Office, а также справочные ресурсы.
-ms.date: 12/13/2019
+ms.date: 05/14/2020
 localization_priority: Normal
-ms.openlocfilehash: 959faff875f342dc1b1ab158ad9ded24732b0894
-ms.sourcegitcommit: b075eed5a6f275274fbbf6d62633219eac416f26
+ms.openlocfilehash: 6448980eec45214a589444229db0fd781b9fea13
+ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "42700357"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "44878621"
 ---
 # <a name="troubleshooting-office-scripts"></a>Устранение неполадок в сценариях Office
 
@@ -19,16 +19,11 @@ ms.locfileid: "42700357"
 Иногда при устранении неполадок необходимо напечатать сообщения на экране. Здесь можно отобразить текущее значение переменных или триггеров, которые вызываются. Для этого зарегистрируете текст в консоли.
 
 ```TypeScript
-console.log("Logging my range's address.");
-myRange.load("address");
-await context.sync();
-console.log(myRange.address);
+console.log("Logging myRange's address.");
+console.log(myRange.getAddress());
 ```
 
-> [!IMPORTANT]
-> Не забудьте `load` получить данные листа `sync` и книгу перед занесением в него свойств объекта.
-
-Строки, в`console.log` которые передаются данные, отображаются в консоли ведения журнала редактора кода. Чтобы включить консоль, нажмите кнопку **с многоточием** и выберите пункт **журналы...**
+Строки, в которые передаются данные `console.log` , отображаются в консоли ведения журнала редактора кода. Чтобы включить консоль, нажмите кнопку **с многоточием** и выберите пункт **журналы...**
 
 Журналы не влияют на книгу.
 
@@ -49,3 +44,4 @@ console.log(myRange.address);
 - [Сценарии Office в Excel в Интернете](../overview/excel.md)
 - [Основные сведения о сценариях для сценариев Office в Excel в Интернете](../develop/scripting-fundamentals.md)
 - [Отменить эффекты сценария Office](undo.md)
+- [Повышение производительности сценариев Office](../develop/web-client-performance.md)

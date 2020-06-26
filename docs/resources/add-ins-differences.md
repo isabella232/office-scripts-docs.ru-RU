@@ -1,18 +1,18 @@
 ---
 title: Различия между сценариями Office и надстройками Office
 description: Различия в поведении и API между сценариями Office и надстройками Office.
-ms.date: 03/23/2020
+ms.date: 06/01/2020
 localization_priority: Normal
-ms.openlocfilehash: 2290d4e34b7a7286d67443de9e9c64bad4fcd4b7
-ms.sourcegitcommit: d556aaefac80e55f53ac56b7f6ecbc657ebd426f
+ms.openlocfilehash: fc2029780190672c633e00e26f44273e4311c754
+ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/26/2020
-ms.locfileid: "42978728"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "44878663"
 ---
 # <a name="differences-between-office-scripts-and-office-add-ins"></a>Различия между сценариями Office и надстройками Office
 
-Надстройки Office и сценарии Office широко распространены. Они оба предоставляют автоматизированный контроль над книгой Excel с `Excel` помощью пространства имен API JavaScript для Office. Однако в их области более ограничены скрипты Office.
+Надстройки Office и сценарии Office широко распространены. Они оба предоставляют автоматизированный контроль над книгой Excel и API JavaScript. Однако API сценариев Office — это специализированная синхронная версия API JavaScript для Office.
 
 ![Схема из четырех квадрантов, в которой показаны области фокуса для различных решений по расширению Office. Сценарии Office и веб-надстройки Office ориентированы на Интернет и совместную работу, но сценарии Office ориентированы на конечных пользователей (в то время как веб-надстройки Office предназначены для профессиональных разработчиков).)](../images/office-programmability-diagram.png)
 
@@ -28,7 +28,9 @@ ms.locfileid: "42978728"
 
 ## <a name="apis"></a>Интерфейсы API
 
-Сценарии Office поддерживают большинство API JavaScript для Excel, что означает, что между этими платформами существует множество функций. Существует два исключения: события и общие API.
+Нет синхронной версии API JavaScript для Office для надстроек Office. Стандартные API сценариев Office уникальны для платформы и имеют множество оптимизаций и изменений, чтобы избежать использования `load` / `sync` парадигмы.
+
+Некоторые [API JavaScript для Excel](/javascript/api/excel?view=excel-js-preview) совместимы с [асинхронными API сценариев Office](../develop/excel-async-model.md). Некоторые примеры и блоки кода надстройки можно перенести в `Excel.run` блоки с минимальным переводом. Несмотря на то, что две платформы имеют несколько таких функций, существуют разрывы. Два основных набора API, у которых есть надстройки Office, но скрипты Office не являются событиями и общими API.
 
 ### <a name="events"></a>События
 
