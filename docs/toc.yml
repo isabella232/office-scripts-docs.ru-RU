@@ -6,10 +6,14 @@
       href: overview/excel.md
     - name: Учебные материалы
       items:
-        - name: Основы работы со сценариями Office
+        - name: Изучение основ сценариев Office
           href: tutorials/excel-tutorial.md
         - name: Чтение данных книги с помощью сценария
           href: tutorials/excel-read-tutorial.md
+        - name: Начало использования сценариев с помощью Power Automate
+          href: tutorials/excel-power-automate-manual.md
+        - name: Автоматический запуск сценариев с помощью Power Automate
+          href: tutorials/excel-power-automate-trigger.md
     - name: Основы сценариев
       href: develop/scripting-fundamentals.md
     - name: Концепции
@@ -22,10 +26,18 @@
           href: resources/vba-differences.md
         - name: Различия между сценариями Office и надстройками Office
           href: resources/add-ins-differences.md
-        - name: Отменить эффекты сценария Office
-          href: testing/undo.md
+        - name: Интеграция с Power Automate
+          href: develop/power-automate-integration.md
     - name: Устранение неполадок
-      href: testing/troubleshooting.md
+      items:
+        - name: Основы устранения неполадок
+          href: testing/troubleshooting.md
+        - name: Повышение производительности сценария
+          href: develop/web-client-performance.md
+        - name: Отмена эффектов сценария Office
+          href: testing/undo.md
+        - name: Использование асинхронной модели (устаревшая версия)
+          href: develop/excel-async-model.md
     - name: Примеры
       items:
         - name: Примеры сценариев
@@ -38,3 +50,5 @@
               href: resources/scenarios/analyze-web-downloads.md
             - name: Калькулятор оценок
               href: resources/scenarios/grade-calculator.md
+            - name: Напоминания о задачах (с помощью Power Automate)
+              href: resources/scenarios/task-reminders.md
