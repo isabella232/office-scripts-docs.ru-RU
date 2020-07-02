@@ -1,14 +1,14 @@
 ---
 title: Использование асинхронных API сценариев Office для поддержки устаревших скриптов
 description: Знакомство с асинхронными API сценариев Office и использование шаблона нагрузки/синхронизации для устаревших сценариев.
-ms.date: 06/22/2020
+ms.date: 06/29/2020
 localization_priority: Normal
-ms.openlocfilehash: c7b3c1401ecc2b4d0371590e71f61ae6e9ad8a9d
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
+ms.openlocfilehash: 78a09232060d862a4e0944356ba2f33f7a264ea1
+ms.sourcegitcommit: 30750c4392db3ef057075a5702abb92863c93eda
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878853"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "44999281"
 ---
 # <a name="using-the-office-scripts-async-apis-to-support-legacy-scripts"></a>Использование асинхронных API сценариев Office для поддержки устаревших скриптов
 
@@ -37,7 +37,7 @@ async function main(context: Excel.RequestContext) {
 
 Поскольку ваш сценарий и рабочая книга работают в разных местах, любая передача данных между ними занимает много времени. В асинхронном API команды ставятся в очередь до тех пор, пока не будет явно вызвана `sync` операция синхронизации скрипта и рабочей книги. Ваш скрипт может работать независимо, пока он не выполнит одно из следующих действий:
 
-- Прочитайте данные из рабочей книги (с помощью операции `load` или метода возвращения [ClientResult](/javascript/api/office-scripts/excel/excel.clientresult?view=office-scripts-async)).
+- Прочитайте данные из рабочей книги (с помощью операции `load` или метода возвращения [ClientResult](/javascript/api/office-scripts/excelscript/excel.clientresult?view=office-scripts-async)).
 - Запишите данные в рабочую книгу (обычно потому, что сценарий завершен).
 
 На следующем рисунке показан пример потока управления между сценарием и книгой:

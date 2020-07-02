@@ -1,14 +1,14 @@
 ---
 title: 'Сценарий примера сценариев Office: анализ загружаемых веб-файлов'
 description: Пример, который принимает необработанные данные из Интернета в книгу Excel и определяет исходное расположение, прежде чем упорядочивать эту информацию в таблице.
-ms.date: 06/15/2020
+ms.date: 06/25/2020
 localization_priority: Normal
-ms.openlocfilehash: 2a74fada55115faf79f0b625b8a7cd6352deb651
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
+ms.openlocfilehash: 425d2af432d6b3c4b7604daf7935d2cc1ec059a8
+ms.sourcegitcommit: 30750c4392db3ef057075a5702abb92863c93eda
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878649"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "44999269"
 ---
 # <a name="office-scripts-sample-scenario-analyze-web-downloads"></a>Сценарий примера сценариев Office: анализ загружаемых веб-файлов
 
@@ -30,6 +30,9 @@ ms.locfileid: "44878649"
 В этом примере показана демонстрация при вызове сообщества разработчиков надстроек Office в течение февраля 2020.
 
 > [!VIDEO https://www.youtube.com/embed/vPEqbb7t6-Y?start=154]
+
+> [!NOTE]
+> Код, показанный в этом видео, использует устаревшую модель API ( [сценарии Office для асинхронных API](../../develop/excel-async-model.md)). Пример, представленный на этой странице, был обновлен, но код выглядит немного иначе, чем запись. Изменения не влияют на поведение скрипта или другого контента в демо докладчика.
 
 ## <a name="setup-instructions"></a>Инструкции по настройке
 

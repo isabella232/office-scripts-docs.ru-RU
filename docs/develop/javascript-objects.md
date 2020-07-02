@@ -1,14 +1,14 @@
 ---
 title: Использование встроенных объектов JavaScript в сценариях Office
 description: Как вызывать встроенные API JavaScript из скрипта Office в Excel в Интернете.
-ms.date: 04/24/2020
+ms.date: 06/29/2020
 localization_priority: Normal
-ms.openlocfilehash: b5d70e77aef79c38a8cfd680c9d03bb126c402b2
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
+ms.openlocfilehash: 1c8ac757574e8c4be64b373f8d4bf421ddfa0c79
+ms.sourcegitcommit: 30750c4392db3ef057075a5702abb92863c93eda
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878537"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "44999262"
 ---
 # <a name="using-built-in-javascript-objects-in-office-scripts"></a>Использование встроенных объектов JavaScript в сценариях Office
 
@@ -50,10 +50,10 @@ function main(workbook: ExcelScript.Workbook) {
 
 ### <a name="working-with-collections"></a>Работа с коллекциями
 
-В коллекции присутствует множество объектов Excel. Коллекция управляется API скриптов Office и предоставляется в виде массива. Например, все [фигуры](/javascript/api/office-scripts/excel/excelscript.shape) на листе включены в объект `Shape[]` , возвращаемый `Worksheet.getShapes` методом. Этот массив можно использовать для считывания значений из коллекции или для доступа к определенным объектам из методов родительского объекта `get*` .
+В коллекции присутствует множество объектов Excel. Коллекция управляется API скриптов Office и предоставляется в виде массива. Например, все [фигуры](/javascript/api/office-scripts/excelscript/excelscript.shape) на листе включены в объект `Shape[]` , возвращаемый `Worksheet.getShapes` методом. Этот массив можно использовать для считывания значений из коллекции или для доступа к определенным объектам из методов родительского объекта `get*` .
 
 > [!NOTE]
-> Не добавляйте и не удаляйте объекты из этих массивов коллекций вручную. Используйте `add` методы для родительских объектов и `delete` методы в объектах типа Collection. Например, добавьте [таблицу](/javascript/api/office-scripts/excel/excelscript.table) на [лист](/javascript/api/office-scripts/excel/excelscript.worksheet) с `Worksheet.addTable` методом и удалите метод `Table` using `Table.delete` .
+> Не добавляйте и не удаляйте объекты из этих массивов коллекций вручную. Используйте `add` методы для родительских объектов и `delete` методы в объектах типа Collection. Например, добавьте [таблицу](/javascript/api/office-scripts/excelscript/excelscript.table) на [лист](/javascript/api/office-scripts/excelscript/excelscript.worksheet) с `Worksheet.addTable` методом и удалите метод `Table` using `Table.delete` .
 
 Следующий сценарий записывает в журнал тип каждой фигуры на текущем листе.
 
