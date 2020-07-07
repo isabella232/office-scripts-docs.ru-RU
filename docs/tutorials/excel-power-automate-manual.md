@@ -1,20 +1,19 @@
 ---
-title: Начало работы со сценариями с помощью автоматизации управления питанием
-description: Руководство по интеграции Power автоматизирования с сценариями Office с помощью ручного триггера.
-ms.date: 06/09/2020
+title: Начало использования сценариев с помощью Power Automate
+description: Руководство по использованию сценариев Office в Power Автоматизация через триггер, выполняемый вручную.
+ms.date: 06/29/2020
 localization_priority: Priority
-ms.openlocfilehash: 37c2d9ae4c5456a1355362c70695fc61c236a725
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
-ms.translationtype: MT
+ms.openlocfilehash: b2a10692929de90506f58851e9322afa63e15ca0
+ms.sourcegitcommit: bf9f33c37c6f7805d6b408aa648bb9785a7cd133
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878871"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "45043414"
 ---
 # <a name="start-using-scripts-with-power-automate-preview"></a>Начало работы со сценариями с помощью автоматизации управления (Предварительная версия)
 
 В этом руководстве рассказывается, как запускать скрипт Office для Excel в Интернете с помощью [автоматизации Powering](https://flow.microsoft.com).
 
-## <a name="prerequisites"></a>Необходимые компоненты
+## <a name="prerequisites"></a>Необходимые действия
 
 [!INCLUDE [Tutorial prerequisites](../includes/tutorial-prerequisites.md)]
 

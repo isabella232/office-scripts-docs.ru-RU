@@ -3,12 +3,11 @@ title: Использование асинхронных API сценариев 
 description: Знакомство с асинхронными API сценариев Office и использование шаблона нагрузки/синхронизации для устаревших сценариев.
 ms.date: 06/29/2020
 localization_priority: Normal
-ms.openlocfilehash: 78a09232060d862a4e0944356ba2f33f7a264ea1
-ms.sourcegitcommit: 30750c4392db3ef057075a5702abb92863c93eda
-ms.translationtype: MT
+ms.openlocfilehash: 6c31a39c8e1fe53f2f5587183a6b32e100d2b457
+ms.sourcegitcommit: bf9f33c37c6f7805d6b408aa648bb9785a7cd133
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "44999281"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "45043400"
 ---
 # <a name="using-the-office-scripts-async-apis-to-support-legacy-scripts"></a>Использование асинхронных API сценариев Office для поддержки устаревших скриптов
 
@@ -37,7 +36,7 @@ async function main(context: Excel.RequestContext) {
 
 Поскольку ваш сценарий и рабочая книга работают в разных местах, любая передача данных между ними занимает много времени. В асинхронном API команды ставятся в очередь до тех пор, пока не будет явно вызвана `sync` операция синхронизации скрипта и рабочей книги. Ваш скрипт может работать независимо, пока он не выполнит одно из следующих действий:
 
-- Прочитайте данные из рабочей книги (с помощью операции `load` или метода возвращения [ClientResult](/javascript/api/office-scripts/excelscript/excel.clientresult?view=office-scripts-async)).
+- Прочитайте данные из рабочей книги (с помощью операции `load` или метода возвращения [ClientResult](/javascript/api/office-scripts/excelscript/excelscript.clientresult?view=office-scripts-async)).
 - Запишите данные в рабочую книгу (обычно потому, что сценарий завершен).
 
 На следующем рисунке показан пример потока управления между сценарием и книгой:
@@ -116,7 +115,7 @@ async function main(context: Excel.RequestContext){
 
 ### <a name="clientresult"></a>ClientResult
 
-Методы в асинхронном API, возвращающие сведения из книги, имеют похожий шаблон для `load` / `sync` парадигмы. Например, `TableCollection.getCount` получает количество таблиц в коллекции. `getCount` возвращает `ClientResult<number>`, что означает, что свойство `value` возвращаемого `ClientResult` выражено числом. Скрипт не может получить доступ к этому значению, пока не вызовет `context.sync()`. По аналогии с загрузкой свойства, `value` — это локальное пустое значение до вызова `sync`.
+Методы в асинхронном API, возвращающие сведения из книги, имеют похожий шаблон для `load` / `sync` парадигмы. Например, `TableCollection.getCount` получает количество таблиц в коллекции. `getCount`Возвращает значение `ClientResult<number>` , означающее, что `value` возвращаемое свойство [`ClientResult`](/javascript/api/office-scripts/excelscript/excelscript.clientresult?view=office-scripts-async) является числом. Скрипт не может получить доступ к этому значению, пока не вызовет `context.sync()`. По аналогии с загрузкой свойства, `value` — это локальное пустое значение до вызова `sync`.
 
 Следующий сценарий получает общее количество таблиц в рабочей книге и записывает его в консоль.
 

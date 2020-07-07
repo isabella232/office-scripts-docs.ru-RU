@@ -1,20 +1,19 @@
 ---
-title: Автоматический запуск сценариев с помощью автоматизации управления питанием
-description: Руководство по интеграции Power автоматизируется с сценариями Office для Excel в Интернете с помощью автоматических внешних триггеров, таких как получение почты через Outlook.
-ms.date: 06/09/2020
+title: Автоматический запуск сценариев с помощью Power Automate
+description: Руководство по запуску сценариев Office для Excel в Интернете с помощью автоматизированного внешнего триггера (получение почты через Outlook).
+ms.date: 06/29/2020
 localization_priority: Priority
-ms.openlocfilehash: 538a6533e4628a0f555d08eadda060a20830a7ae
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
-ms.translationtype: MT
+ms.openlocfilehash: a750197d6b5ae770ad7d2e17b3ee00dc65ee8875
+ms.sourcegitcommit: bf9f33c37c6f7805d6b408aa648bb9785a7cd133
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878844"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "45043421"
 ---
 # <a name="automatically-run-scripts-with-power-automate-preview"></a>Автоматический запуск сценариев с помощью автоматизации управления (Предварительная версия)
 
 В этом руководстве рассказывается, как использовать скрипт Office для Excel в Интернете с автоматизированным рабочим процессом [Power автоматизировать](https://flow.microsoft.com) . Ваш сценарий будет автоматически запускаться при каждом получении сообщения электронной почты, записи данных из электронной почты в книгу Excel.
 
-## <a name="prerequisites"></a>Необходимые компоненты
+## <a name="prerequisites"></a>Необходимые действия
 
 [!INCLUDE [Tutorial prerequisites](../includes/tutorial-prerequisites.md)]
 
@@ -263,6 +262,6 @@ function main(
 
 ## <a name="next-steps"></a>Дальнейшие действия
 
-Для получения дополнительных сведений о подключении сценариев Office к автоматизации управления питанием посетите страницу [интеграция сценариев Office с помощью Power автоматизиру](../develop/power-automate-integration.md) .
+Для получения дополнительных сведений о подключении сценариев Office к автоматизации управления питанием посетите страницу [Запуск сценариев Office с помощью Power автоматизировать](../develop/power-automate-integration.md) .
 
 Вы также можете ознакомиться с [примером сценария автоматизированных напоминаний](../resources/scenarios/task-reminders.md) о том, как объединять сценарии Office и автоматизацию управления питанием с помощью адаптивных карточек Teams.
