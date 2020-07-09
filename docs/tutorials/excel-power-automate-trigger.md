@@ -1,19 +1,20 @@
 ---
-title: Автоматический запуск сценариев с помощью Power Automate
+title: Автоматический запуск сценариев с автоматизированными потоками автоматизации управления
 description: Руководство по запуску сценариев Office для Excel в Интернете с помощью автоматизированного внешнего триггера (получение почты через Outlook).
-ms.date: 06/29/2020
+ms.date: 07/01/2020
 localization_priority: Priority
-ms.openlocfilehash: a750197d6b5ae770ad7d2e17b3ee00dc65ee8875
-ms.sourcegitcommit: bf9f33c37c6f7805d6b408aa648bb9785a7cd133
+ms.openlocfilehash: fc98fb36fd5a8c5ef10bc3b767d6f5add0306246
+ms.sourcegitcommit: edf58aed3cd38f57e5e7227465a1ef5515e15703
+ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "45043421"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "45081630"
 ---
-# <a name="automatically-run-scripts-with-power-automate-preview"></a>Автоматический запуск сценариев с помощью автоматизации управления (Предварительная версия)
+# <a name="automatically-run-scripts-with-automated-power-automate-flows-preview"></a>Автоматическое выполнение сценариев с автоматизированными автоматизированными потоками (Предварительная версия)
 
 В этом руководстве рассказывается, как использовать скрипт Office для Excel в Интернете с автоматизированным рабочим процессом [Power автоматизировать](https://flow.microsoft.com) . Ваш сценарий будет автоматически запускаться при каждом получении сообщения электронной почты, записи данных из электронной почты в книгу Excel.
 
-## <a name="prerequisites"></a>Необходимые действия
+## <a name="prerequisites"></a>Необходимые компоненты
 
 [!INCLUDE [Tutorial prerequisites](../includes/tutorial-prerequisites.md)]
 
