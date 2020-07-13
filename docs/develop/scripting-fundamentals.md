@@ -1,14 +1,14 @@
 ---
 title: Основы сценариев для сценариев Office в Excel в Интернете
 description: Информация об объектной модели и другие основы для изучения перед написанием сценариев Office.
-ms.date: 04/24/2020
+ms.date: 06/29/2020
 localization_priority: Priority
-ms.openlocfilehash: 8449654e359f665677f3d416a8e28fa4d6930f26
-ms.sourcegitcommit: 350bd2447f616fa87bb23ac826c7731fb813986b
+ms.openlocfilehash: 9ea24f26052877bc70862c8a05321d588f409b11
+ms.sourcegitcommit: 30750c4392db3ef057075a5702abb92863c93eda
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "43919800"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "44999304"
 ---
 # <a name="scripting-fundamentals-for-office-scripts-in-excel-on-the-web-preview"></a>Основы сценариев для сценариев Office в Excel в Интернете (предварительная версия)
 
@@ -16,9 +16,24 @@ ms.locfileid: "43919800"
 
 [!INCLUDE [Preview note](../includes/preview-note.md)]
 
+## <a name="main-function"></a>Функция `main`
+
+Каждый сценарий Office должен содержать функцию `main` с типом `ExcelScript.Workbook` в качестве первого параметра. При выполнении этой функции приложение Excel вызывает эту функцию `main`, предоставляя книгу в качестве ее первого параметра. Поэтому важно не изменять базовую подпись функции `main` после записи сценария или создания нового сценария в редакторе кода.
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+// Your code goes here
+}
+```
+
+Код внутри `main` функции запускается при запуске скрипта. `main` может вызывать другие функции в вашем скрипте, но код, который не содержится в функции, не будет работать.
+
+> [!CAUTION]
+> Если ваша функция `main` выглядит как `async function main(context: Excel.RequestContext)`, то сценарий использует устаревшую асинхронную модель API. Дополнительные сведения, включая сведения о преобразовании устаревших сценариев в текущую модель API, см. в статье [Использование асинхронных API сценариев Office для поддержки устаревших сценариев](excel-async-model.md).
+
 ## <a name="object-model"></a>Объектная модель
 
-Чтобы понять API-интерфейсы Excel, вы должны понимать, как компоненты рабочей книги связаны друг с другом.
+Чтобы написать сценарий, необходимо знать, как устроены API Office Script. Компоненты книги определенным образом взаимосвязаны друг с другом. Эти взаимосвязи во многом схожи с пользовательским интерфейсом Excel.
 
 - **Рабочая книга** содержит одну или несколько **рабочих листов**.
 - **Рабочий лист** предоставляет доступ к ячейкам через объекты **Range**.
@@ -27,52 +42,68 @@ ms.locfileid: "43919800"
 - **Рабочий лист** содержит коллекции тех объектов данных, которые присутствуют на отдельном листе.
 - **Рабочие книги** содержат коллекции некоторых из этих объектов данных (таких как **таблицы**) для всей **рабочей книги**.
 
+### <a name="workbook"></a>Книга
+
+Для каждого сценария предоставляется объект `workbook` типа `Workbook`, он предоставляется функцией `main`. Это объект верхнего уровня, через который сценарий взаимодействует с книгой Excel.
+
+Следующий сценарий получает активный лист из книги и записывает его имя.
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+    // Get the active worksheet.
+    let sheet = workbook.getActiveWorksheet();
+
+    // Display the current worksheet's name.
+    console.log(sheet.getName());
+}
+```
+
 ### <a name="ranges"></a>Диапазоны
 
 Диапазон - это группа непрерывных ячеек в рабочей книге. В сценариях обычно используется нотация в стиле A1 (например, **B3** для отдельной ячейки в столбце **B** и строке **3** или **C2:F4** для ячеек из столбцов с **C** по **F** и строк с **2** по **4**) для определения диапазонов.
 
-Диапазоны имеют три основных свойства: `values`, `formulas`, и `format`. Эти свойства получают или устанавливают значения ячеек, формулы для оценки и визуальное форматирование ячеек.
+У диапазонов три основных свойства: значения, формулы и формат. Эти свойства получают или устанавливают значения ячеек, формулы для вычисления и визуальное форматирование ячеек. Для доступа к ним используются `getValues`, `getFormulas` и `getFormat`. Значения и формулы можно изменять с помощью `setValues` и `setFormulas`, а формат является объектом `RangeFormat`, который состоит из нескольких меньших объектов, задаваемых по отдельности.
+
+Диапазоны используют двухмерные массивы для управления информацией. Дополнительные сведения об обработке этих массивов на платформе сценариев Office см. в разделе ["Работа с диапазонами" статьи "Использование встроенных объектов JavaScript в сценариях Office"](javascript-objects.md#working-with-ranges).
 
 #### <a name="range-sample"></a>Образец диапазона
 
-В следующем примере показано, как создавать записи продаж. Этот скрипт использует `Range` объекты для установки значений, формул и форматов.
+В следующем примере показано, как создавать записи продаж. В этом сценарии используются объекты `Range` для установки значений, формул и частей формата.
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
-  // Get the active worksheet.
-  let sheet = context.workbook.worksheets.getActiveWorksheet();
+function main(workbook: ExcelScript.Workbook) {
+    // Get the active worksheet.
+    let sheet = workbook.getActiveWorksheet();
 
-  // Create the headers and format them to stand out.
-  let headers = [
-    ["Product", "Quantity", "Unit Price", "Totals"]
-  ];
-  let headerRange = sheet.getRange("B2:E2");
-  headerRange.values = headers;
-  headerRange.format.fill.color = "#4472C4";
-  headerRange.format.font.color = "white";
+    // Create the headers and format them to stand out.
+    let headers = [["Product", "Quantity", "Unit Price", "Totals"]];
+    let headerRange = sheet.getRange("B2:E2");
+    headerRange.setValues(headers);
+    headerRange.getFormat().getFill().setColor("#4472C4");
+    headerRange.getFormat().getFont().setColor("white");
 
-  // Create the product data rows.
-  let productData = [
-    ["Almonds", 6, 7.5],
-    ["Coffee", 20, 34.5],
-    ["Chocolate", 10, 9.56],
-  ];
-  let dataRange = sheet.getRange("B3:D5");
-  dataRange.values = productData;
+    // Create the product data rows.
+    let productData = [
+        ["Almonds", 6, 7.5],
+        ["Coffee", 20, 34.5],
+        ["Chocolate", 10, 9.56],
+    ];
+    let dataRange = sheet.getRange("B3:D5");
+    dataRange.setValues(productData);
 
-  // Create the formulas to total the amounts sold.
-  let totalFormulas = [
-    ["=C3 * D3"],
-    ["=C4 * D4"],
-    ["=C5 * D5"],
-    ["=SUM(E3:E5)"]
-  ];
-  let totalRange = sheet.getRange("E3:E6");
-  totalRange.formulas = totalFormulas;
-  totalRange.format.font.bold = true;
+    // Create the formulas to total the amounts sold.
+    let totalFormulas = [
+        ["=C3 * D3"],
+        ["=C4 * D4"],
+        ["=C5 * D5"],
+        ["=SUM(E3:E5)"],
+    ];
+    let totalRange = sheet.getRange("E3:E6");
+    totalRange.setFormulas(totalFormulas);
+    totalRange.getFormat().getFont().setBold(true);
 
-  // Display the totals as US dollar amounts.
-  totalRange.numberFormat = [["$0.00"]];
+    // Display the totals as US dollar amounts.
+    totalRange.setNumberFormat("$0.00");
 }
 ```
 
@@ -82,7 +113,7 @@ async function main(context: Excel.RequestContext) {
 
 ### <a name="charts-tables-and-other-data-objects"></a>Диаграммы, таблицы и другие объекты данных
 
-Скрипты могут создавать и управлять структурами данных и визуализациями в Excel. Таблицы и диаграммы являются двумя наиболее часто используемыми объектами, но API поддерживают сводные таблицы, фигуры, изображения и многое другое.
+Скрипты могут создавать и управлять структурами данных и визуализациями в Excel. Таблицы и диаграммы являются двумя наиболее часто используемыми объектами, но API поддерживают сводные таблицы, фигуры, изображения и многое другое. Они сохраняются в коллекциях, которые рассматриваются далее в этой статье.
 
 #### <a name="creating-a-table"></a>Создание таблицы
 
@@ -91,9 +122,12 @@ async function main(context: Excel.RequestContext) {
 Следующий скрипт создает таблицу с использованием диапазонов из предыдущего примера.
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
-   let sheet = context.workbook.worksheets.getActiveWorksheet();
-   sheet.tables.add("B2:E5", true);
+function main(workbook: ExcelScript.Workbook) {
+    // Get the active worksheet.
+    let sheet = workbook.getActiveWorksheet();
+
+    // Add a table that has headers using the data from B2:E5.
+    sheet.addTable("B2:E5", true);
 }
 ```
 
@@ -108,10 +142,18 @@ async function main(context: Excel.RequestContext) {
 Следующий скрипт создает простую столбчатую диаграмму для трех элементов и размещает ее на 100 пикселей ниже верхней части листа.
 
 ```TypeScript
-async function main(context: Excel.RequestContext) {
-  let sheet = context.workbook.worksheets.getActiveWorksheet();
-  let chart = sheet.charts.add(Excel.ChartType.columnStacked, sheet.getRange("B3:C5"));
-  chart.top = 100;
+function main(workbook: ExcelScript.Workbook) {
+    // Get the active worksheet.
+    let sheet = workbook.getActiveWorksheet();
+
+    // Create a column chart using the data from B3:C5.
+    let chart = sheet.addChart(
+        ExcelScript.ChartType.columnStacked,
+        sheet.getRange("B3:C5")
+    );
+
+    // Set the margin of the chart to be 100 pixels from the top of the screen.
+    chart.setTop(100);
 }
 ```
 
@@ -119,116 +161,81 @@ async function main(context: Excel.RequestContext) {
 
 ![Столбчатая диаграмма, показывающая количество трех предметов из предыдущей записи о продажах.](../images/chart-sample.png)
 
+### <a name="collections-and-other-object-relations"></a>Коллекции и другие отношения объектов
+
+Доступ к любому дочернему объекту осуществляется через его родительский объект. Например, можно прочесть `Worksheets` из объекта `Workbook`. Будет доступен связанный метод `get` родительского класса (например, `Workbook.getWorksheets()` или `Workbook.getWorksheet(name)`). Одиночные методы `get` возвращают один объект, им требуется идентификатор или имя конкретного объекта (например, имя листа). Множественные методы `get` возвращают всю коллекцию объектов в качестве массива. Если коллекция пуста, возвращается пустой массив (`[]`).
+
+После получения коллекции можно использовать обычные операции с массивами, такие как получение его `length` или использование циклов `for`, `for..of`, `while` для итерации. Также можно использовать методы массивов TypeScript, такие как `map`, `forEach`. Также можно получить доступ к отдельным объектам внутри коллекции с помощью значения индекса массива. Например, `workbook.getTables()[0]` возвращает первую таблицу в коллекции. Дополнительные сведения об использовании встроенной функциональности массивов платформы сценариев Office см. в разделе ["Работа с коллекциями" статьи "Использование встроенных объектов JavaScript в сценариях Office"](javascript-objects.md#working-with-collections).
+
+Следующий сценарий возвращает все таблицы в книге. При этом отображаются заголовки, видны кнопки фильтров, а для таблицы устанавливается стиль "TableStyleLight1".
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+  /* Get table collection */
+  const tables = workbook.getTables();
+  /* Set table formatting properties */
+  tables.forEach(table => {
+    table.setShowHeaders(true);
+    table.setShowFilterButton(true);
+    table.setPredefinedTableStyle("TableStyleLight1");
+  })
+}
+```
+
+#### <a name="adding-excel-objects-with-a-script"></a>Добавление объектов Excel с помощью сценария
+
+Можно программным образом добавлять объекты документов, например таблицы или диаграммы, путем вызова соответствующего метода `add`, доступного для родительского объекта.
+
+> [!NOTE]
+> Не следует вручную добавлять объекты в массивы коллекций. Используйте методы `add` для родительских объектов. Например, можно добавить `Table` к `Worksheet` методом `Worksheet.addTable`.
+
+Следующий сценарий создает таблицу в Excel на первом листе книги. Обратите внимание, что метод `addTable` возвращает созданную таблицу.
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+    // Get the first worksheet.
+    let sheet = workbook.getWorksheets()[0];
+
+    // Add a table that uses the data in C3:G10.
+    let table = sheet.addTable(
+      "C3:G10",
+       true /* True because the table has headers. */
+    );
+}
+```
+
+## <a name="removing-excel-objects-with-a-script"></a>Удаление объектов Excel с помощью сценария
+
+Чтобы удалить объект, вызовите метод `delete` этого объекта.
+
+> [!NOTE]
+> Как и в случае добавления объектов, не следует вручную удалять объекты из массивов коллекций. Используйте методы `delete` для объектов типа коллекции. Например, для удаления `Table` из `Worksheet` используйте `Table.delete`.
+
+Следующий сценарий удаляет первый лист в книге.
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+    // Get first worksheet.
+    let sheet = workbook.getWorksheets()[0];
+
+    // Remove that worksheet from the workbook.
+    sheet.delete();
+}
+```
+
 ### <a name="further-reading-on-the-object-model"></a>Дальнейшее чтение по объектной модели
 
 [Справочная документация по API сценариев Office](/javascript/api/office-scripts/overview) представляет собой полный список объектов, используемых в сценариях Office. Там вы можете использовать оглавление, чтобы перейти к любому классу, о котором вы хотите узнать больше. Ниже приведены несколько часто просматриваемых страниц.
 
-- [Chart](/javascript/api/office-scripts/excel/excel.chart)
-- [Comment](/javascript/api/office-scripts/excel/excel.comment)
-- [PivotTable](/javascript/api/office-scripts/excel/excel.pivottable)
-- [Range](/javascript/api/office-scripts/excel/excel.range)
-- [RangeFormat](/javascript/api/office-scripts/excel/excel.rangeformat)
-- [Shape](/javascript/api/office-scripts/excel/excel.shape)
-- [Table](/javascript/api/office-scripts/excel/excel.table)
-- [Workbook](/javascript/api/office-scripts/excel/excel.workbook)
-- [Worksheet](/javascript/api/office-scripts/excel/excel.worksheet)
-
-## <a name="main-function"></a>`main` функция
-
-Каждый сценарий Office должен содержать `main` функцию со следующей подписью, включая определение `Excel.RequestContext` типа:
-
-```TypeScript
-async function main(context: Excel.RequestContext) {
-    // Your Excel Script
-}
-```
-
-Код внутри `main` функции запускается при запуске скрипта. `main` может вызывать другие функции в вашем скрипте, но код, который не содержится в функции, не будет работать.
-
-## <a name="context"></a>Context
-
-Функция `main` принимает `Excel.RequestContext` параметра с именем `context`. Думайте о `context` как о мосте между вашим сценарием и книгой. Ваш сценарий обращается к книге с помощью `context` объекта и использует этот `context` для отправки данных туда и обратно.
-
-Объект `context` необходим, потому что скрипт и Excel работают в разных процессах и местах. Сценарий должен будет внести изменения или запросить данные из рабочей книги в облаке. Объект `context` управляет этими транзакциями.
-
-## <a name="sync-and-load"></a>Синхронизация и загрузка
-
-Поскольку ваш сценарий и рабочая книга работают в разных местах, любая передача данных между ними занимает много времени. Для повышения производительности сценария команды помещаются в очередь до тех пор, пока сценарий явно не вызовет `sync` операцию для синхронизации сценария и рабочей книги. Ваш скрипт может работать независимо, пока он не выполнит одно из следующих действий:
-
-- Прочитайте данные из рабочей книги (с помощью операции `load` или метода возвращения [ClientResult](/javascript/api/office-scripts/excel/excel.clientresult)).
-- Запишите данные в рабочую книгу (обычно потому, что сценарий завершен).
-
-На следующем рисунке показан пример потока управления между сценарием и книгой:
-
-![Диаграмма, показывающая операции чтения и записи, идущие в рабочую книгу из сценария.](../images/load-sync.png)
-
-### <a name="sync"></a>Синхронизировать
-
-Всякий раз, когда вашему сценарию нужно прочитать данные или записать данные в рабочую книгу, вызывайте метод `RequestContext.sync`, как показано здесь:
-
-```TypeScript
-await context.sync();
-```
-
-> [!NOTE]
-> `context.sync()` неявно вызывается, когда скрипт заканчивается.
-
-После завершения операции `sync` книга обновляется, чтобы отразить все операции записи, указанные сценарием. Операция записи устанавливает любое свойство для объекта Excel (например, `range.format.fill.color = "red"`) или вызывает метод, который изменяет свойство (например, `range.format.autoFitColumns()`). Операция `sync` также считывает любые значения из рабочей книги, запрошенные сценарием с помощью операции `load` или метода возвращения `ClientResult` (как описано в следующих разделах).
-
-Синхронизация вашего сценария с книгой может занять некоторое время, в зависимости от вашей сети. Вы должны минимизировать количество вызовов `sync`, чтобы ваш скрипт работал быстро.  
-
-### <a name="load"></a>Load
-
-Сценарий должен загрузить данные из рабочей книги перед ее чтением. Однако частая загрузка данных из всей рабочей книги значительно снижает скорость работы сценария. Вместо этого метод `load` позволяет вашему сценарию указать, какие именно данные следует извлечь из рабочей книги.
-
-Метод `load` доступен для каждого объекта Excel. Ваш скрипт должен загрузить свойства объекта, прежде чем он сможет их прочитать. Невыполнение этого требования приведет к ошибке.
-
-В следующих примерах объект `Range` используется для демонстрации трех способов использования метода `load` для загрузки данных.
-
-|Intent |Пример команды | Эффект |
-|:--|:--|:--|
-|Загрузить одно свойство |`myRange.load("values");` | Загружает одно свойство, в данном случае двумерный массив значений в этом диапазоне. |
-|Загрузить несколько свойств |`myRange.load("values, rowCount, columnCount");`| Загружает все свойства из списка, разделенного запятыми, в этом примере значения, количество строк и количество столбцов. |
-|Загрузить все | `myRange.load();`|Загружает все свойства в диапазоне. Это не рекомендуемое решение, так как оно замедлит ваш скрипт, получая ненужные данные. Вы должны использовать это только при тестировании вашего скрипта или если вам нужно каждое свойство объекта. |
-
-Ваш скрипт должен вызывать `context.sync()` перед чтением любых загруженных значений.
-
-```TypeScript
-let range = selectedSheet.getRange("A1:B3");
-range.load ("rowCount"); // Load the property.
-await context.sync(); // Synchronize with the workbook to get the property.
-console.log(range.rowCount); // Read and log the property value (3).
-```
-
-Вы также можете загрузить свойства всей коллекции. Каждый объект коллекции имеет `items` свойство, которое является массивом, содержащим объекты в этой коллекции. Использование `items` в качестве начала иерархического вызова (`items\myProperty`) для `load` загружает указанные свойства для каждого из этих элементов. В следующем примере загружается свойство `resolved` для каждых `Comment` объектов в `CommentCollection` объекте рабочего листа.
-
-```TypeScript
-let comments = selectedSheet.comments;
-comments.load("items/resolved"); // Load the `resolved` property from every comment in this collection.
-await context.sync(); // Synchronize with the workbook to get the properties.
-```
-
-> [!TIP]
-> Подробнее о работе с коллекциями в сценариях Office см. в статье, в разделе [массива Использование встроенных объектов JavaScript в сценариях Office](javascript-objects.md#array).
-
-### <a name="clientresult"></a>ClientResult
-
-Методы возвращения данных из рабочей книги имеют шаблон, аналогичный парадигме `load`/`sync`. Например, `TableCollection.getCount` получает количество таблиц в коллекции. `getCount` возвращает `ClientResult<number>`, что означает, что свойство `value` возвращаемого `ClientResult` выражено числом. Скрипт не может получить доступ к этому значению, пока не вызовет `context.sync()`. По аналогии с загрузкой свойства, `value` — это локальное пустое значение до вызова `sync`.
-
-Следующий сценарий получает общее количество таблиц в рабочей книге и записывает его в консоль.
-
-```TypeScript
-async function main(context: Excel.RequestContext) {
-  let tableCount = context.workbook.tables.getCount();
-
-  // This sync call implicitly loads tableCount.value.
-  // Any other ClientResult values are loaded too.
-  await context.sync();
-
-  // Trying to log the value before calling sync would throw an error.
-  console.log(tableCount.value);
-}
-```
+- [Chart](/javascript/api/office-scripts/excelscript/excelscript.chart)
+- [Comment](/javascript/api/office-scripts/excelscript/excelscript.comment)
+- [PivotTable](/javascript/api/office-scripts/excelscript/excelscript.pivottable)
+- [Range](/javascript/api/office-scripts/excelscript/excelscript.range)
+- [RangeFormat](/javascript/api/office-scripts/excelscript/excelscript.rangeformat)
+- [Shape](/javascript/api/office-scripts/excelscript/excelscript.shape)
+- [Table](/javascript/api/office-scripts/excelscript/excelscript.table)
+- [Workbook](/javascript/api/office-scripts/excelscript/excelscript.workbook)
+- [Worksheet](/javascript/api/office-scripts/excelscript/excelscript.worksheet)
 
 ## <a name="see-also"></a>См. также
 
