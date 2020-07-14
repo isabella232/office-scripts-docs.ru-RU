@@ -1,14 +1,14 @@
 ---
 title: Чтение данных книги с помощью сценариев Office в Excel в Интернете
 description: Учебник по сценариям Office о чтении данных из книг и их оценке в сценарии.
-ms.date: 01/27/2020
+ms.date: 04/23/2020
 localization_priority: Priority
-ms.openlocfilehash: 42ed0fe5843a78692f9660b873211e3668702164
-ms.sourcegitcommit: b075eed5a6f275274fbbf6d62633219eac416f26
+ms.openlocfilehash: 93204184d4b5947b2a67107b1fd73c178a73c32e
+ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "42700324"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "44878690"
 ---
 # <a name="read-workbook-data-with-office-scripts-in-excel-on-the-web"></a>Чтение данных книги с помощью сценариев Office в Excel в Интернете
 
@@ -17,14 +17,9 @@ ms.locfileid: "42700324"
 > [!TIP]
 > Если вы только приступили к работе со сценариями Office, рекомендуем начать с учебника [Запись, редактирование и создание сценариев Office в Excel в Интернете](excel-tutorial.md).
 
-## <a name="prerequisites"></a>Необходимые компоненты
+## <a name="prerequisites"></a>Необходимые действия
 
-[!INCLUDE [Preview note](../includes/preview-note.md)]
-
-Перед началом работы с этим учебником у вас должен быть доступ к сценариям Office. Для этого требуется следующее:
-
-- [Excel в Интернете](https://www.office.com/launch/excel).
-- Попросите своего администратора [включить сценарии Office для организации](https://support.office.com/article/office-scripts-settings-in-m365-19d3c51a-6ca2-40ab-978d-60fa49554dcf), в результате чего на ленту добавится вкладка **Автоматизировать**.
+[!INCLUDE [Tutorial prerequisites](../includes/tutorial-prerequisites.md)]
 
 > [!IMPORTANT]
 > Этот учебник предназначен для пользователей с начальным и средним уровнем знаний по JavaScript или TypeScript. Если вы впервые работаете с JavaScript, рекомендуем прочесть [учебник Mozilla по JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Introduction). Чтобы получить дополнительные сведения о среде сценариев, ознакомьтесь со статьей [Сценарии Office в Excel в Интернете](../overview/excel.md).
@@ -56,33 +51,25 @@ ms.locfileid: "42700324"
     Замените содержимое сценария следующим кодом:
 
     ```TypeScript
-    async function main(context: Excel.RequestContext) {
-      // Get the current worksheet.
-      let workbook = context.workbook;
-      let worksheets = workbook.worksheets;
-      let selectedSheet = worksheets.getActiveWorksheet();
+    function main(workbook: ExcelScript.Workbook) {
+        // Get the current worksheet.
+        let selectedSheet = workbook.getActiveWorksheet();
 
-      // Format the range to display numerical dollar amounts.
-      selectedSheet.getRange("D2:E8").numberFormat = [["$#,##0.00"]];
+        // Format the range to display numerical dollar amounts.
+        selectedSheet.getRange("D2:E8").setNumberFormat("$#,##0.00");
 
-      // Fit the width of all the used columns to the data.
-      selectedSheet.getUsedRange().format.autofitColumns();
+        // Fit the width of all the used columns to the data.
+        selectedSheet.getUsedRange().getFormat().autofitColumns();
     }
     ```
 
-5. Теперь прочитаем значение в одном из числовых столбцов. Добавьте следующий код в конце сценария:
+5. Теперь прочитаем значение в одном из числовых столбцов. Добавьте следующий код в конце сценария (перед закрывающей скобкой `}`):
 
     ```TypeScript
     // Get the value of cell D2.
     let range = selectedSheet.getRange("D2");
-    range.load("values");
-    await context.sync();
-  
-    // Print the value of D2.
-    console.log(range.values);
+    console.log(range.getValues());
     ```
-
-    Обратите внимание на вызовы `load` и `sync`. Подробные сведения об этих методах можно найти в статье [Основные сведения о сценариях Office в Excel в Интернете](../develop/scripting-fundamentals.md#sync-and-load). Пока же учитывайте, что требуется запросить данные для чтения, а затем синхронизировать сценарий с книгой, чтобы прочесть эти данные.
 
 6. Запустите сценарий.
 7. Откройте консоль. Откройте меню **Многоточие** и нажмите **Журналы...**.
@@ -99,10 +86,12 @@ ms.locfileid: "42700324"
 1. Добавьте следующий код в конце сценария:
 
     ```TypeScript
-    // Run the `Math.abs` function with the value at D2 and apply that value back to D2.
-    let positiveValue = Math.abs(range.values[0][0]);
-    range.values = [[positiveValue]];
+        // Run the `Math.abs` function with the value at D2 and apply that value back to D2.
+    let positiveValue = Math.abs(range.getValue());
+    range.setValue(positiveValue);
     ```
+
+    Обратите внимание на то, что мы используем `getValue` и `setValue`. Эти методы применимы к одной ячейке. При обработке диапазонов, включающих несколько ячеек, нужно использовать `getValues` и `setValues`.
 
 2. Значение ячейки **D2** теперь должно быть положительным.
 
@@ -113,47 +102,44 @@ ms.locfileid: "42700324"
 1. Удалите код, влияющий только на одну ячейку (предыдущий код с абсолютным значением), чтобы ваш сценарий выглядел следующим образом:
 
     ```TypeScript
-    async function main(context: Excel.RequestContext) {
-      // Get the current worksheet.
-      let workbook = context.workbook;
-      let worksheets = workbook.worksheets;
-      let selectedSheet = worksheets.getActiveWorksheet();
+    function main(workbook: ExcelScript.Workbook) {
+        // Get the current worksheet.
+        let selectedSheet = workbook.getActiveWorksheet();
 
-      // Format the range to display numerical dollar amounts.
-      selectedSheet.getRange("D2:E8").numberFormat = [["$#,##0.00"]];
+        // Format the range to display numerical dollar amounts.
+        selectedSheet.getRange("D2:E8").setNumberFormat("$#,##0.00");
 
-      // Fit the width of all the used columns to the data.
-      selectedSheet.getUsedRange().format.autofitColumns();
+        // Fit the width of all the used columns to the data.
+        selectedSheet.getUsedRange().getFormat().autofitColumns();
     }
     ```
 
-2. Добавьте цикл, выполняющий итерацию в строках двух последних столбцов. Для каждой ячейки сценарий устанавливает текущее абсолютное значение.
+2. Добавьте цикл в конце сценария, выполняющий итерацию в строках двух последних столбцов. Для каждой ячейки сценарий устанавливает текущее абсолютное значение.
 
     Обратите внимание, что массив, определяющий расположения ячеек, отсчитывается от нуля. Это означает, что ячейка **A1** имеет значение `range[0][0]`.
 
     ```TypeScript
     // Get the values of the used range.
     let range = selectedSheet.getUsedRange();
-    range.load("rowCount,values");
-    await context.sync();
+    let rangeValues = range.getValues();
 
     // Iterate over the fourth and fifth columns and set their values to their absolute value.
-    for (let i = 1; i < range.rowCount; i++) {
-      // The column at index 3 is column "4" in the worksheet.
-      if (range.values[i][3] != 0) {
-        let positiveValue = Math.abs(range.values[i][3]);
-        selectedSheet.getCell(i, 3).values = [[positiveValue]];
-      }
+    for (let i = 1; i < range.getRowCount(); i++) {
+        // The column at index 3 is column "4" in the worksheet.
+        if (rangeValues[i][3] != 0) {
+            let positiveValue = Math.abs(rangeValues[i][3]);
+            selectedSheet.getCell(i, 3).setValue(positiveValue);
+        }
 
-      // The column at index 4 is column "5" in the worksheet.
-      if (range.values[i][4] != 0) {
-        let positiveValue = Math.abs(range.values[i][4]);
-        selectedSheet.getCell(i, 4).values = [[positiveValue]];
-      }
+        // The column at index 4 is column "5" in the worksheet.
+        if (rangeValues[i][4] != 0) {
+            let positiveValue = Math.abs(rangeValues[i][4]);
+            selectedSheet.getCell(i, 4).setValue(positiveValue);
+        }
     }
     ```
 
-    Эта часть сценария выполняет несколько важных задач. Сначала она загружает значения и количество строк используемого диапазона. Это позволяет просматривать значения и определять момент остановки. Затем выполняется итерация в используемом диапазоне с проверкой каждой ячейки в столбцах **Дебет** или **Кредит**. Наконец, если значение в ячейке не равно 0, оно заменяется абсолютным значением. Мы избегаем использования нулей, поэтому можно оставить пустые ячейки неизменными.
+    Эта часть сценария выполняет несколько важных задач. Сначала она получает значения и количество строк используемого диапазона. Это позволяет просматривать значения и определять момент остановки. Затем выполняется итерация в используемом диапазоне с проверкой каждой ячейки в столбцах **Дебет** или **Кредит**. Наконец, если значение в ячейке не равно 0, оно заменяется абсолютным значением. Мы избегаем использования нулей, поэтому можно оставить пустые ячейки неизменными.
 
 3. Запустите сценарий.
 
