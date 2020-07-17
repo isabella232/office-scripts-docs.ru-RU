@@ -1,14 +1,14 @@
 ---
 title: Примеры сценариев для сценариев Office
 description: Пояснение к большим, управляемым сценариям примерам для сценариев Office в Excel в Интернете.
-ms.date: 02/20/2020
+ms.date: 07/10/2020
 localization_priority: Normal
-ms.openlocfilehash: 0aefe0eccc3a811a259e69f7153ab0d803288b1d
-ms.sourcegitcommit: b075eed5a6f275274fbbf6d62633219eac416f26
+ms.openlocfilehash: 29fc925c0cd8eebe281e7384c7be3aa72111fa98
+ms.sourcegitcommit: ebd1079c7e2695ac0e7e4c616f2439975e196875
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "42700336"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "45160490"
 ---
 # <a name="sample-scenarios-for-office-scripts"></a>Примеры сценариев для сценариев Office
 
@@ -23,6 +23,10 @@ ms.locfileid: "42700336"
 ### <a name="grade-calculator"></a>Калькулятор оценок
 
 Сценарий оценки [категории](grade-calculator.md) — это сценарий, проверяющий запись лектора для оценки своего класса. Он демонстрирует навыки проверки ошибок, форматирования ячеек и регулярных выражений.
+
+### <a name="task-reminders"></a>Напоминания о задачах
+
+Сценарий [напоминаний о задаче](task-reminders.md) использует сценарий Office в блоке автоматизации Power, чтобы отправлять напоминания сотрудникам для обновления состояния проекта. В нем выделены навыки интеграции Power Автоматизация и передачи данных в сценарии и из них.
 
 ## <a name="see-also"></a>См. также
 
