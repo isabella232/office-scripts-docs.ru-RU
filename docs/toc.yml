@@ -26,7 +26,9 @@
           href: resources/vba-differences.md
         - name: Различия между сценариями Office и надстройками Office
           href: resources/add-ins-differences.md
-        - name: Интеграция с Power Automate
+        - name: Поддержка внешнего вызова API в сценариях Office
+          href: develop/external-calls.md
+        - name: Выполнение сценариев с помощью Power Automate
           href: develop/power-automate-integration.md
     - name: Устранение неполадок
       items:
