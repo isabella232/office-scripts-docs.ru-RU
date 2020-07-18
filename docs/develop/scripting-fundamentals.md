@@ -1,14 +1,14 @@
 ---
 title: Основы сценариев для сценариев Office в Excel в Интернете
 description: Информация об объектной модели и другие основы для изучения перед написанием сценариев Office.
-ms.date: 06/29/2020
+ms.date: 07/08/2020
 localization_priority: Priority
-ms.openlocfilehash: 9ea24f26052877bc70862c8a05321d588f409b11
-ms.sourcegitcommit: 30750c4392db3ef057075a5702abb92863c93eda
+ms.openlocfilehash: 6c02f4fb986e6a0ed1dd7afb099aaa1c9d1ea276
+ms.sourcegitcommit: ebd1079c7e2695ac0e7e4c616f2439975e196875
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "44999304"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "45160476"
 ---
 # <a name="scripting-fundamentals-for-office-scripts-in-excel-on-the-web-preview"></a>Основы сценариев для сценариев Office в Excel в Интернете (предварительная версия)
 
@@ -22,7 +22,7 @@ ms.locfileid: "44999304"
 
 ```typescript
 function main(workbook: ExcelScript.Workbook) {
-// Your code goes here
+  // Your code goes here
 }
 ```
 

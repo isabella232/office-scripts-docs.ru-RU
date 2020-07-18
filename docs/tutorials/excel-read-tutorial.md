@@ -1,14 +1,14 @@
 ---
 title: Чтение данных книги с помощью сценариев Office в Excel в Интернете
 description: Учебник по сценариям Office о чтении данных из книг и их оценке в сценарии.
-ms.date: 04/23/2020
+ms.date: 07/10/2020
 localization_priority: Priority
-ms.openlocfilehash: 93204184d4b5947b2a67107b1fd73c178a73c32e
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
+ms.openlocfilehash: fef1df7cab70ccef67a12ee466af5a89803d0992
+ms.sourcegitcommit: ebd1079c7e2695ac0e7e4c616f2439975e196875
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878690"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "45160419"
 ---
 # <a name="read-workbook-data-with-office-scripts-in-excel-on-the-web"></a>Чтение данных книги с помощью сценариев Office в Excel в Интернете
 
@@ -72,10 +72,9 @@ ms.locfileid: "44878690"
     ```
 
 6. Запустите сценарий.
-7. Откройте консоль. Откройте меню **Многоточие** и нажмите **Журналы...**.
-8. В консоли должно отображаться следующее: `[Array[1]]`. Это не число, так как диапазоны являются двухмерными массивами данных. Этот двухмерный диапазон напрямую регистрируется в консоли. К счастью, редактор кода позволяет просмотреть содержимое массива.
-9. Когда двухмерный массив регистрируется в консоли, она группирует значения столбцов под каждой строкой. Разверните журнал массива, нажав синий треугольник.
-10. Разверните второй уровень массива, нажав появившийся синий треугольник. Должно отобразиться следующее:
+7. В консоли должно отображаться следующее: `[Array[1]]`. Это не число, так как диапазоны являются двухмерными массивами данных. Этот двухмерный диапазон напрямую регистрируется в консоли. К счастью, редактор кода позволяет просмотреть содержимое массива.
+8. Когда двухмерный массив регистрируется в консоли, она группирует значения столбцов под каждой строкой. Разверните журнал массива, нажав синий треугольник.
+9. Разверните второй уровень массива, нажав появившийся синий треугольник. Должно отобразиться следующее:
 
     ![Журнал консоли, отображающий результат "–20,05", размещенный под двумя массивами.](../images/tutorial-4.png)
 
@@ -86,7 +85,7 @@ ms.locfileid: "44878690"
 1. Добавьте следующий код в конце сценария:
 
     ```TypeScript
-        // Run the `Math.abs` function with the value at D2 and apply that value back to D2.
+    // Run the `Math.abs` function with the value at D2 and apply that value back to D2.
     let positiveValue = Math.abs(range.getValue());
     range.setValue(positiveValue);
     ```
@@ -124,7 +123,8 @@ ms.locfileid: "44878690"
     let rangeValues = range.getValues();
 
     // Iterate over the fourth and fifth columns and set their values to their absolute value.
-    for (let i = 1; i < range.getRowCount(); i++) {
+    let rowCount = range.getRowCount();
+    for (let i = 1; i < rowCount; i++) {
         // The column at index 3 is column "4" in the worksheet.
         if (rangeValues[i][3] != 0) {
             let positiveValue = Math.abs(rangeValues[i][3]);
