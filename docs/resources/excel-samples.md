@@ -1,14 +1,14 @@
 ---
 title: Примеры сценариев для сценариев Office в Excel в Интернете
 description: Коллекция примеров кода для использования со сценариями Office в Excel в Интернете.
-ms.date: 06/18/2020
+ms.date: 07/16/2020
 localization_priority: Normal
-ms.openlocfilehash: bfa6679595e6e28cc5d2ae3e3e487fd3e77738aa
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
+ms.openlocfilehash: fa330bfa284799e26ee2cf49800102072d66612b
+ms.sourcegitcommit: 8d549884e68170f808d3d417104a4451a37da83c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878677"
+ms.lasthandoff: 07/22/2020
+ms.locfileid: "45229605"
 ---
 # <a name="sample-scripts-for-office-scripts-in-excel-on-the-web-preview"></a>Примеры сценариев для сценариев Office в Excel в Интернете (Предварительная версия)
 
@@ -107,7 +107,67 @@ function main(workbook: ExcelScript.Workbook) {
 }
 ```
 
-### <a name="work-with-dates"></a>Работать с датами
+### <a name="change-each-individual-cell-in-a-range"></a>Изменение каждой отдельной ячейки в диапазоне
+
+Этот сценарий выполняет цикл над текущим выбранным диапазоном. Он удаляет текущее форматирование и задает случайный цвет для цвета заливки в каждой ячейке.
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+  // Get the currently selected range.
+  let range = workbook.getSelectedRange();
+
+  // Get the size boundaries of the range.
+  let rows = range.getRowCount();
+  let cols = range.getColumnCount();
+
+  // Clear any existing formatting
+  range.clear(ExcelScript.ClearApplyTo.formats);
+
+  // Iterate over the range.
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      // Generate a random color hex-code.
+      let colorString = `#${Math.random().toString(16).substr(-6)}`;
+
+      // Set the color of the current cell to that random hex-code.
+      range.getCell(row, col).getFormat().getFill().setColor(colorString);
+    }
+  }
+}
+```
+
+## <a name="collections"></a>Коллекции
+
+Эти примеры работают с коллекциями объектов в книге.
+
+### <a name="iterating-over-collections"></a>Итерация по коллекциям
+
+Этот сценарий получает и заносит в журнал имена всех листов в книге. Кроме того, в качестве цвета вкладки задается случайный цвет.
+
+```typescript
+function main(workbook: ExcelScript.Workbook) {
+  // Get all the worksheets in the workbook.
+  let sheets = workbook.getWorksheets();
+
+  // Get a list of all the worksheet names.
+  let names = sheets.map ((sheet) => sheet.getName());
+
+  // Write in the console all the worksheet names and the total count.
+  console.log(names);
+  console.log(`Total worksheets inside of this workbook: ${sheets.length}`);
+  
+  // Set the tab color each worksheet to a random color
+  for (let sheet of sheets) {
+    // Generate a random color hex-code.
+    let colorString = `#${Math.random().toString(16).substr(-6)}`;
+
+    // Set the color of the current worksheet's tab to that random hex-code.
+    sheet.setTabColor(colorString);
+  }
+}
+```
+
+## <a name="dates"></a>Даты
 
 В примерах, приведенных в этом разделе, показано, как использовать объект JavaScript [Date](https://developer.mozilla.org/docs/web/javascript/reference/global_objects/date) .
 

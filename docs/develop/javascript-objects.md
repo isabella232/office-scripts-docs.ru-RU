@@ -1,14 +1,14 @@
 ---
 title: Использование встроенных объектов JavaScript в сценариях Office
 description: Как вызывать встроенные API JavaScript из скрипта Office в Excel в Интернете.
-ms.date: 06/29/2020
+ms.date: 07/16/2020
 localization_priority: Normal
-ms.openlocfilehash: 1c8ac757574e8c4be64b373f8d4bf421ddfa0c79
-ms.sourcegitcommit: 30750c4392db3ef057075a5702abb92863c93eda
+ms.openlocfilehash: 4bb5fb5444887005ececbbfdf0130cba3784e0c4
+ms.sourcegitcommit: 8d549884e68170f808d3d417104a4451a37da83c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "44999262"
+ms.lasthandoff: 07/22/2020
+ms.locfileid: "45229598"
 ---
 # <a name="using-built-in-javascript-objects-in-office-scripts"></a>Использование встроенных объектов JavaScript в сценариях Office
 
@@ -107,7 +107,7 @@ function main(workbook: ExcelScript.Workbook) {
 }
 ```
 
-В разделе " [трудозатраты с датами](../resources/excel-samples.md#work-with-dates) " в примерах имеются дополнительные скрипты, связанные с датами.
+В разделе " [трудозатраты с датами](../resources/excel-samples.md#dates) " в примерах имеются дополнительные скрипты, связанные с датами.
 
 ## <a name="math"></a>математика;
 
