@@ -1,28 +1,25 @@
 ---
 title: Чтение данных книги с помощью сценариев Office в Excel в Интернете
 description: Учебник по сценариям Office о чтении данных из книг и их оценке в сценарии.
-ms.date: 07/10/2020
+ms.date: 07/20/2020
 localization_priority: Priority
-ms.openlocfilehash: fef1df7cab70ccef67a12ee466af5a89803d0992
-ms.sourcegitcommit: ebd1079c7e2695ac0e7e4c616f2439975e196875
+ms.openlocfilehash: cdd09f13bb53cfff8c051360f2306cdb6956d86d
+ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "45160419"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "46616711"
 ---
 # <a name="read-workbook-data-with-office-scripts-in-excel-on-the-web"></a>Чтение данных книги с помощью сценариев Office в Excel в Интернете
 
-В этом учебнике объясняется, как читать данные из книги с помощью сценария Office для Excel в Интернете. После этого вы сможете отредактировать прочитанные данные и вернуть их в книгу.
+В этом учебнике объясняется, как читать данные из книги с помощью сценария Office для Excel в Интернете. Вы напишите новый сценарий, форматирующий банковскую выписку и нормализующий данные в ней. В рамках этой очистки данных ваш сценарий будет считывать значения из ячеек транзакций, применять простую формулу к каждому значению и записывать полученный ответ в книгу. Чтение данных из книги позволяет вам автоматизировать некоторые процессы принятия решений в сценарии.
 
 > [!TIP]
-> Если вы только приступили к работе со сценариями Office, рекомендуем начать с учебника [Запись, редактирование и создание сценариев Office в Excel в Интернете](excel-tutorial.md).
+> Если вы только приступили к работе со сценариями Office, рекомендуем начать с учебника [Запись, редактирование и создание сценариев Office в Excel в Интернете](excel-tutorial.md). [Сценарии Office используют TypeScript](../overview/code-editor-environment.md), и этот учебник предназначен для пользователей с начальным и средним уровнем знаний по JavaScript или TypeScript. Если вы впервые работаете с JavaScript, рекомендуем начать с [учебника Mozilla по JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Introduction).
 
-## <a name="prerequisites"></a>Необходимые действия
+## <a name="prerequisites"></a>Предварительные условия
 
 [!INCLUDE [Tutorial prerequisites](../includes/tutorial-prerequisites.md)]
-
-> [!IMPORTANT]
-> Этот учебник предназначен для пользователей с начальным и средним уровнем знаний по JavaScript или TypeScript. Если вы впервые работаете с JavaScript, рекомендуем прочесть [учебник Mozilla по JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Introduction). Чтобы получить дополнительные сведения о среде сценариев, ознакомьтесь со статьей [Сценарии Office в Excel в Интернете](../overview/excel.md).
 
 ## <a name="read-a-cell"></a>Чтение ячейки
 
@@ -150,3 +147,5 @@ ms.locfileid: "45160419"
 ## <a name="next-steps"></a>Дальнейшие действия
 
 Откройте редактор кода и попробуйте некоторые [примеры сценариев Office в Excel в Интернете](../resources/excel-samples.md). Дополнительные сведения о создании сценариев Office доступны в статье [Основные сведения о сценариях Office в Excel в Интернете](../develop/scripting-fundamentals.md).
+
+В следующем наборе учебников по сценариям Office рассматривается использование сценариев Office с помощью Power Automate. Узнайте больше о преимуществах сочетания двух платформ в статье [Выполнение сценариев Office с помощью Power Automate](../develop/power-automate-integration.md) или ознакомьтесь с учебником [Вызов сценариев из активированного вручную потока Power Automate](excel-power-automate-manual.md), чтобы создать поток Power Automate, использующий сценарий Office.

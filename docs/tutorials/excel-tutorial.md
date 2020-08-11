@@ -1,30 +1,25 @@
 ---
 title: Запись, редактирование и создание сценариев Office в Excel в Интернете
 description: Учебник с основными сведениями о сценариях Office, включая запись сценариев с помощью средства записи действий и запись данных в книгу.
-ms.date: 01/27/2020
+ms.date: 07/21/2020
 localization_priority: Priority
-ms.openlocfilehash: 1971ff2ffd80554beb6ac561677ee3384f87ca81
-ms.sourcegitcommit: b075eed5a6f275274fbbf6d62633219eac416f26
+ms.openlocfilehash: 96bdc286883d87249de260666c7c8ffe2c94cc0f
+ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "42700312"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "46616775"
 ---
 # <a name="record-edit-and-create-office-scripts-in-excel-on-the-web"></a>Запись, редактирование и создание сценариев Office в Excel в Интернете
 
-В этом учебнике вы ознакомитесь с основами записи, редактирования и создания сценария Office для Excel в Интернете.
+В этом учебнике вы ознакомитесь с основами записи, редактирования и создания сценария Office для Excel в Интернете. Вы запишите сценарий, применяющий форматирование к листу продаж. После этого вы измените записанный сценарий, чтобы применить дополнительное форматирование, создать таблицу и отсортировать ее. Эта шаблон записи с последующим изменением является важным инструментом для просмотра ваших действий Excel в виде кода.
 
 ## <a name="prerequisites"></a>Необходимые компоненты
 
-[!INCLUDE [Preview note](../includes/preview-note.md)]
-
-Перед началом работы с этим учебником у вас должен быть доступ к сценариям Office. Для этого требуется следующее:
-
-- [Excel в Интернете](https://www.office.com/launch/excel).
-- Попросите своего администратора [включить сценарии Office для организации](https://support.office.com/article/office-scripts-settings-in-m365-19d3c51a-6ca2-40ab-978d-60fa49554dcf), в результате чего на ленту добавится вкладка **Автоматизировать**.
+[!INCLUDE [Tutorial prerequisites](../includes/tutorial-prerequisites.md)]
 
 > [!IMPORTANT]
-> Этот учебник предназначен для пользователей с начальным и средним уровнем знаний по JavaScript или TypeScript. Если вы впервые работаете с JavaScript, рекомендуем прочесть [учебник Mozilla по JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Introduction). Чтобы получить дополнительные сведения о среде сценариев, ознакомьтесь со статьей [Сценарии Office в Excel в Интернете](../overview/excel.md).
+> Этот учебник предназначен для пользователей с начальным и средним уровнем знаний по JavaScript или TypeScript. Если вы впервые работаете с JavaScript, рекомендуем начать с [учебника Mozilla по JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Introduction). Чтобы получить дополнительные сведения о среде сценариев, ознакомьтесь со статьей [Среда редактора кода сценариев Office](../overview/code-editor-environment.md).
 
 ## <a name="add-data-and-record-a-basic-script"></a>Добавление данных и запись простого сценария
 
@@ -60,31 +55,28 @@ ms.locfileid: "42700312"
 
 Предыдущий сценарий окрасил строку "Апельсины" в оранжевый цвет. Давайте добавим желтый цвет для строки "Лимоны".
 
-1. Откройте вкладку **Автоматизировать**.
-2. Нажмите кнопку **Редактор кода**.
-3. Откройте сценарий, записанный в предыдущем разделе. Должен отобразится примерно такой код:
+1. В открывшейся области **Сведения** нажмите кнопку **Изменить**.
+2. Должен отобразиться примерно такой код:
 
     ```TypeScript
-    async function main(context: Excel.RequestContext) {
+    function main(workbook: ExcelScript.Workbook) {
       // Set fill color to FFC000 for range Sheet1!A2:C2
-      let workbook = context.workbook;
-      let worksheets = workbook.worksheets;
-      let selectedSheet = worksheets.getActiveWorksheet();
-      selectedSheet.getRange("A2:C2").format.fill.color = "FFC000";
+      let selectedSheet = workbook.getActiveWorksheet();
+      selectedSheet.getRange("A2:C2").getFormat().getFill().setColor("FFC000");
     }
     ```
 
-    Этот код получает текущий лист, сначала обращаясь к коллекции листов книги. Затем он настраивает цвет заливки диапазона **A2:C2**.
+    Этот код получает текущий лист из книги. Затем он настраивает цвет заливки диапазона **A2:C2**.
 
     Диапазоны — это фундаментальная часть сценариев Office в Excel в Интернете. Диапазон — это непрерывный прямоугольный блок ячеек, содержащий значения, формулы и форматирование. Они представляют собой базовую структуру ячеек, в которой можно выполнять большинство задач сценариев.
 
-4. Добавьте следующую строку в конце сценария (между местом настройки значения `color` и закрывающей скобкой `}`):
+3. Добавьте следующую строку в конце сценария (между местом настройки значения `color` и закрывающей скобкой `}`):
 
     ```TypeScript
-    selectedSheet.getRange("A3:C3").format.fill.color = "yellow";
+    selectedSheet.getRange("A3:C3").getFormat().getFill().setColor("yellow");
     ```
 
-5. Протестируйте сценарий, нажав **Запустить**. Книга должна выглядеть следующим образом:
+4. Протестируйте сценарий, нажав **Запустить**. Книга должна выглядеть следующим образом:
 
     ![Строка данных о продажах фруктов с выделенной оранжевым цветом строкой "Апельсины" и выделенной желтым цветом строкой "Лимоны".](../images/tutorial-2.png)
 
@@ -95,31 +87,29 @@ ms.locfileid: "42700312"
 1. Добавьте следующую строку в конце сценария (перед закрывающей скобкой `}`):
 
     ```TypeScript
-    let table = selectedSheet.tables.add("A1:C5", true);
+    let table = selectedSheet.addTable("A1:C5", true);
     ```
 
 2. Этот вызов возвращает объект `Table`. Воспользуемся этой таблицей, чтобы отсортировать данные. Отсортируем данные по возрастанию на основе значений в столбце "Фрукты". Добавьте следующую строку после создания таблицы:
 
     ```TypeScript
-    table.sort.apply([{ key: 0, ascending: true }]);
+    table.getSort().apply([{ key: 0, ascending: true }]);
     ```
 
     Ваш сценарий должен выглядеть так:
 
     ```TypeScript
-    async function main(context: Excel.RequestContext) {
-      // Set fill color to FFC000 for range Sheet1!A2:C2
-      let workbook = context.workbook;
-      let worksheets = workbook.worksheets;
-      let selectedSheet = worksheets.getActiveWorksheet();
-      selectedSheet.getRange("A2:C2").format.fill.color = "FFC000";
-      selectedSheet.getRange("A3:C3").format.fill.color = "yellow";
-      let table = selectedSheet.tables.add("A1:C5", true);
-      table.sort.apply([{ key: 0, ascending: true }]);
+    function main(workbook: ExcelScript.Workbook) {
+        // Set fill color to FFC000 for range Sheet12!A2:C2
+        let selectedSheet = workbook.getActiveWorksheet();
+        selectedSheet.getRange("A2:C2").getFormat().getFill().setColor("FFC000");
+        selectedSheet.getRange("A3:C3").getFormat().getFill().setColor("yellow");
+        let table = selectedSheet.addTable("A1:C5", true);
+        table.getSort().apply([{ key: 0, ascending: true }]);
     }
     ```
 
-    В таблицах есть объект `TableSort`, доступный с помощью свойства `Table.sort`. Вы можете применить условия сортировки к этому объекту. Метод `apply` использует массив объектов `SortField`. В этом случае у нас есть только одно условие сортировки, поэтому мы используем только один параметр `SortField`. `key: 0` присваивает столбцу со значениями, определяющими сортировку, значение "0" (это первый столбец в таблице, в данном случае: **A**). `ascending: true` сортирует данные по возрастанию (вместо порядка по убыванию).
+    В таблицах есть объект `TableSort`, доступный с помощью метода `Table.getSort`. Вы можете применить условия сортировки к этому объекту. Метод `apply` использует массив объектов `SortField`. В этом случае у нас есть только одно условие сортировки, поэтому мы используем только один параметр `SortField`. `key: 0` присваивает столбцу со значениями, определяющими сортировку, значение "0" (это первый столбец в таблице, в данном случае: **A**). `ascending: true` сортирует данные по возрастанию (вместо порядка по убыванию).
 
 3. Запустите сценарий. Вы увидите следующую таблицу:
 

@@ -1,14 +1,14 @@
 ---
 title: Сценарии Office в Excel в Интернете
 description: Краткое введение в регистратор действий и редактор кода для сценариев Office.
-ms.date: 07/10/2020
+ms.date: 07/21/2020
 localization_priority: Priority
-ms.openlocfilehash: a27d1797ba2e968cbf4f56c4313223978dc9087c
-ms.sourcegitcommit: ebd1079c7e2695ac0e7e4c616f2439975e196875
+ms.openlocfilehash: 557a4f8fac8fbeafe150f425170c8e45f62986c6
+ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "45160469"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "46616730"
 ---
 # <a name="office-scripts-in-excel-on-the-web-preview"></a>Сценарии Office в Excel в Интернете (предварительный просмотр)
 
@@ -20,7 +20,24 @@ ms.locfileid: "45160469"
 
 > [!VIDEO https://www.microsoft.com/videoplayer/embed/RE4qdFF]
 
+## <a name="requirements"></a>Требования
+
 [!INCLUDE [Preview note](../includes/preview-note.md)]
+
+Для использования сценариев Office вам потребуются следующие компоненты.
+
+1. [Excel в Интернете](https://www.office.com/launch/excel) (другие платформы, например классическая версия, не поддерживаются).
+1. Сценарии Office, [включенные администратором](https://support.office.com/article/office-scripts-settings-in-m365-19d3c51a-6ca2-40ab-978d-60fa49554dcf).
+1. Любая коммерческая или образовательная лицензия Microsoft 365 с доступом к классическим приложениям Microsoft 365 Office, таким как:
+
+    - Office 365 бизнес
+    - Office 365 бизнес премиум
+    - Office 365 профессиональный плюс
+    - Office 365 профессиональный плюс для устройств
+    - Office 365 корпоративный E3
+    - Office 365 корпоративный E5
+    - Office 365 A3
+    - Office 365 A5
 
 ## <a name="when-to-use-office-scripts"></a>Когда использовать офисные сценарии
 

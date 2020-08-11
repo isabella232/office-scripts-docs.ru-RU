@@ -1,25 +1,25 @@
 ---
 title: Передача данных сценариям в автоматически запускаемых рабочих процессах Power Automate
 description: Учебное руководство, посвященное запуску сценариев Office для Excel в Интернете с помощью Power Automate при получении электронной почты с дальнейшей передачей данных рабочего процесса в сценарий.
-ms.date: 07/14/2020
+ms.date: 07/24/2020
 localization_priority: Priority
-ms.openlocfilehash: c024891e187f22b7d10f6e9d52d262dc2ec4057f
-ms.sourcegitcommit: ebd1079c7e2695ac0e7e4c616f2439975e196875
+ms.openlocfilehash: aed34f4b93bbe22768aab73d7a7264cc7d3c3ee6
+ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "45160483"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "46616768"
 ---
 # <a name="pass-data-to-scripts-in-an-automatically-run-power-automate-flow-preview"></a>Передача данных сценариям в автоматически запускаемых рабочих процессах Power Automate (предварительная версия)
 
-В этом руководстве объясняется, как использовать сценарий Office для Excel в Интернете с помощью автоматизированных рабочих процессов [Power Automate](https://flow.microsoft.com). Сценарий будет автоматически выполняться каждый раз при получении электронной почты. Данные из сообщений электронной почты будут записываться в книгу Excel.
+В этом руководстве объясняется, как использовать сценарий Office для Excel в Интернете с помощью автоматизированных рабочих процессов [Power Automate](https://flow.microsoft.com). Сценарий будет автоматически выполняться каждый раз при получении электронной почты. Данные из сообщений электронной почты будут записываться в книгу Excel. Возможность передавать данные из других приложений в сценарии Office предоставляет вам значительную гибкость и свободу в автоматизированных процессах.
 
-## <a name="prerequisites"></a>Предварительные требования
+> [!TIP]
+> Если вы только приступили к работе со сценариями Office, рекомендуем начать с учебника [Запись, редактирование и создание сценариев Office в Excel в Интернете](excel-tutorial.md). Если вы впервые используете Power Automate, рекомендуем начать с учебника [Вызов сценариев из активированного вручную потока Power Automate](excel-power-automate-manual.md). [Сценарии Office используют TypeScript](../overview/code-editor-environment.md), и этот учебник предназначен для пользователей с начальным и средним уровнем знаний по JavaScript или TypeScript. Если вы впервые работаете с JavaScript, рекомендуем начать с [учебника Mozilla по JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Introduction).
+
+## <a name="prerequisites"></a>Предварительные условия
 
 [!INCLUDE [Tutorial prerequisites](../includes/power-automate-tutorial-prerequisites.md)]
-
-> [!IMPORTANT]
-> В этом учебном руководстве предполагается, что вы прочитали учебное руководство [Запуск сценариев Office с помощью Power Automate](excel-power-automate-manual.md).
 
 ## <a name="prepare-the-workbook"></a>Подготовка книги
 
@@ -46,7 +46,7 @@ Power Automate не может использовать [относительн�
       newTable.setName("EmailTable");
 
       // Add a new PivotTable to a new worksheet
-      let pivotWorksheet = workbook.addWorksheet("SubjectPivot");
+      let pivotWorksheet = workbook.addWorksheet("Subjects");
       let newPivotTable = workbook.addPivotTable("Pivot", "EmailTable", pivotWorksheet.getRange("A3:C20"));
 
       // Setup the pivot hierarchies
@@ -56,7 +56,7 @@ Power Automate не может использовать [относительн�
     }
     ```
 
-## <a name="create-an-office-script-for-your-automated-workflow"></a>Создайте сценарий Office для автоматизированного рабочего процесса
+## <a name="create-an-office-script"></a>Создание сценария Office
 
 Создадим сценарий, записывающий информацию из электронной почты. Предположим, что нужно узнать, в какие дни недели мы получаем больше всего почты, и сколько уникальных отправителей отправляют ее. В нашей книге содержится таблица со столбцами **Дата**, **День недели**, **Адрес электронной почты** и **Тема**. Кроме того, в книге содержится сводная таблица, содержащая **День недели** и **Адрес электронной почты** (это иерархии строк). Количество уникальных **тем** — это отображаемая объединенная информация (иерархия данных). Наш сценарий будет обновлять эту сводную таблицу после обновления таблицы электронной почты.
 
@@ -82,41 +82,16 @@ Power Automate не может использовать [относительн�
     let table = emailWorksheet.getTable("EmailTable");
   
     // Get the PivotTable.
-    let pivotTableWorksheet = workbook.getWorksheet("SubjectPivot");
+    let pivotTableWorksheet = workbook.getWorksheet("Subjects");
     let pivotTable = pivotTableWorksheet.getPivotTable("Pivot");
     ```
 
 4. Параметр `dateReceived` относится к типу `string`. Преобразуем его в объекту [`Date`](../develop/javascript-objects.md#date), чтобы можно было удобно получать день недели. После этого нужно будет сопоставить значение номера дня с более читаемой версией. Добавьте следующий код в конце сценария перед закрывающим символом `}`
 
     ```TypeScript
-    // Parse the received date string.
-    let date = new Date(dateReceived);
-
-    // Convert number representing the day of the week into the name of the day.
-    let dayText : string;
-    switch (date.getDay()) {
-      case 0:
-        dayText = "Sunday";
-        break;
-      case 1:
-        dayText = "Monday";
-        break;
-      case 2:
-        dayText = "Tuesday";
-        break;
-      case 3:
-        dayText = "Wednesday";
-        break;
-      case 4:
-        dayText = "Thursday";
-        break;
-      case 5:
-        dayText = "Friday";
-        break;
-      default:
-        dayText = "Saturday";
-        break;
-    }
+      // Parse the received date string to determine the day of the week.
+      let emailDate = new Date(dateReceived);
+      let dayName = emailDate.toLocaleDateString("en-US", { weekday: 'long' });
     ```
 
 5. Строка `subject` может включать тег ответа "RE:". Давайте удалим этот тег из строки, чтобы у сообщений электронной почте в одной и той же беседе была одинаковая тема для таблицы. Добавьте следующий код в конце сценария перед закрывающим символом `}`
@@ -131,7 +106,7 @@ Power Automate не может использовать [относительн�
 
     ```TypeScript
     // Add the parsed text to the table.
-    table.addRow(-1, [dateReceived, dayText, from, subjectText]);
+    table.addRow(-1, [dateReceived, dayName, from, subjectText]);
     ```
 
 7. Теперь нужно обновить сводную таблицу. Добавьте следующий код в конце сценария перед закрывающим символом `}`
@@ -156,44 +131,19 @@ function main(
   let table = emailWorksheet.getTable("EmailTable");
 
   // Get the PivotTable.
-  let pivotTableWorksheet = workbook.getWorksheet("Pivot");
-  let pivotTable = pivotTableWorksheet.getPivotTable("SubjectPivot");
+  let pivotTableWorksheet = workbook.getWorksheet("Subjects");
+  let pivotTable = pivotTableWorksheet.getPivotTable("Pivot");
 
-  // Parse the received date string.
-  let date = new Date(dateReceived);
-
-  // Convert number representing the day of the week into the name of the day.
-  let dayText: string;
-  switch (date.getDay()) {
-    case 0:
-      dayText = "Sunday";
-      break;
-    case 1:
-      dayText = "Monday";
-      break;
-    case 2:
-      dayText = "Tuesday";
-      break;
-    case 3:
-      dayText = "Wednesday";
-      break;
-    case 4:
-      dayText = "Thursday";
-      break;
-    case 5:
-      dayText = "Friday";
-      break;
-    default:
-      dayText = "Saturday";
-      break;
-  }
+  // Parse the received date string to determine the day of the week.
+  let emailDate = new Date(dateReceived);
+  let dayName = emailDate.toLocaleDateString("en-US", { weekday: 'long' });
 
   // Remove the reply tag from the email subject to group emails on the same thread.
   let subjectText = subject.replace("Re: ", "");
   subjectText = subjectText.replace("RE: ", "");
 
   // Add the parsed text to the table.
-  table.addRow(-1, [dateReceived, dayText, from, subjectText]);
+  table.addRow(-1, [dateReceived, dayName, from, subjectText]);
 
   // Refresh the PivotTable to include the new row.
   pivotTable.refresh();
@@ -229,7 +179,7 @@ function main(
 
     ![Вариант действия Power Automate "Запуск сценария" (предварительная версия).](../images/power-automate-tutorial-5.png)
 
-8. Укажите следующие параметры для соединителя **Запуск сценария**.
+8. Затем выберите книгу, сценарий и исходные аргументы сценария для использования на следующем шаге. В этом учебнике вы будете использовать книгу, созданную в OneDrive, но вы можете воспользоваться любой книгой в OneDrive или на сайте SharePoint. Укажите следующие параметры для соединителя **Запуск сценария**.
 
     - **Расположение**: OneDrive для бизнеса
     - **Библиотека документов**: OneDrive

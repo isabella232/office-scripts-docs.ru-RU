@@ -1,25 +1,25 @@
 ---
 title: Вызов сценариев из активированного вручную потока Power Automate
 description: В этом руководстве рассказывается об использовании сценариев Office в Power Automate с помощью триггера с ручным срабатыванием.
-ms.date: 07/14/2020
+ms.date: 07/24/2020
 localization_priority: Priority
-ms.openlocfilehash: 70fca2620973ecefe9eda40f02e28f064b713677
-ms.sourcegitcommit: ebd1079c7e2695ac0e7e4c616f2439975e196875
+ms.openlocfilehash: f447e465bc0b09043d64752266bc9b6dbe5a5d89
+ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "45160441"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "46616760"
 ---
 # <a name="call-scripts-from-a-manual-power-automate-flow-preview"></a>Вызов сценариев из активированного вручную потока Power Automate (предварительный просмотр)
 
-В этом руководстве объясняется, как запускать сценарий Office для Excel в Интернете с помощью [Power Automate](https://flow.microsoft.com).
+В этом руководстве объясняется, как запускать сценарий Office для Excel в Интернете с помощью [Power Automate](https://flow.microsoft.com). Вы создадите сценарий, обновляющий значения двух ячеек текущим временем. После этого вы подключите этот сценарий к запускаемому вручную потоку Power Automate, чтобы этот сценарий выполнялся при каждом нажатии кнопки Power Automate. После знакомства с базовым шаблоном вы можете расширить поток, чтобы включить другие приложения и автоматизировать дополнительные повседневные рабочие процессы.
 
-## <a name="prerequisites"></a>Предварительные требования
+> [!TIP]
+> Если вы только приступили к работе со сценариями Office, рекомендуем начать с учебника [Запись, редактирование и создание сценариев Office в Excel в Интернете](excel-tutorial.md). [Сценарии Office используют TypeScript](../overview/code-editor-environment.md), и этот учебник предназначен для пользователей с начальным и средним уровнем знаний по JavaScript или TypeScript. Если вы впервые работаете с JavaScript, рекомендуем начать с [учебника Mozilla по JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Introduction).
+
+## <a name="prerequisites"></a>Предварительные условия
 
 [!INCLUDE [Tutorial prerequisites](../includes/power-automate-tutorial-prerequisites.md)]
-
-> [!IMPORTANT]
-> В этом руководстве предполагается, что вы прочитали руководство [Запись, изменение и создание сценариев Office для Excel в Интернете](excel-tutorial.md).
 
 ## <a name="prepare-the-workbook"></a>Подготовка книги
 
@@ -65,7 +65,7 @@ ms.locfileid: "45160441"
 
 1. Войдите на [сайт Power Automate](https://flow.microsoft.com).
 
-2. В меню, которое отображается в левой части экрана, нажмите клавишу **Создать**. Откроется список способов создания новых рабочих процессов.
+2. В меню в левой части экрана выберите **Создать**. При этом откроется список способов создания новых рабочих процессов.
 
     ![Кнопка "Создать" в Power Automate.](../images/power-automate-tutorial-1.png)
 
@@ -81,15 +81,15 @@ ms.locfileid: "45160441"
 
 5. Нажмите клавишу **Следующий шаг**.
 
-6. Откройте вкладку **Стандартные**, а затем выберите **Excel Online (бизнес)**.
+6. Перейдите на вкладку **Стандартные** и выберите **Excel Online (бизнес)**.
 
     ![Функция Power Automate для Excel Online (бизнес).](../images/power-automate-tutorial-4.png)
 
-7. В разделе **Действия** выберите **Запустить сценарий (предварительный просмотр)**.
+7. В разделе **Действия** выберите **Запустить сценарий (предварительная версия)**.
 
-    ![Вариант действия Power Automate "Запуск сценария" (предварительный просмотр).](../images/power-automate-tutorial-5.png)
+    ![Вариант действия Power Automate "Запуск сценария" (предварительная версия).](../images/power-automate-tutorial-5.png)
 
-8. Определите указанные ниже параметры для соединителя **Запуск сценария**.
+8. Затем выберите книгу и сценарий для использования на следующем шаге. В этом учебнике вы будете использовать книгу, созданную в OneDrive, но вы можете воспользоваться любой книгой в OneDrive или на сайте SharePoint. Укажите следующие параметры для соединителя **Запуск сценария**.
 
     - **Расположение**: OneDrive для бизнеса
     - **Библиотека документов**: OneDrive
