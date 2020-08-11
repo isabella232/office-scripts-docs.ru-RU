@@ -1,37 +1,37 @@
 ---
 title: 'Пример сценария Office Scripts: Калькулятор производительности'
 description: Пример, который определяет процентные и буквенные оценки для класса учащихся.
-ms.date: 06/01/2020
+ms.date: 07/24/2020
 localization_priority: Normal
-ms.openlocfilehash: 6f8e3db756c72cf1d0e2f774ccd819c041f0c42d
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
+ms.openlocfilehash: 4e488c6cc67bda9122b88c55070654632d9c7fa2
+ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878642"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "46616745"
 ---
-# <a name="office-scripts-sample-scenario-grade-calculator"></a><span data-ttu-id="01c3d-103">Пример сценария Office Scripts: Калькулятор производительности</span><span class="sxs-lookup"><span data-stu-id="01c3d-103">Office Scripts sample scenario: Grade calculator</span></span>
+# <a name="office-scripts-sample-scenario-grade-calculator"></a><span data-ttu-id="944a8-103">Пример сценария Office Scripts: Калькулятор производительности</span><span class="sxs-lookup"><span data-stu-id="944a8-103">Office Scripts sample scenario: Grade calculator</span></span>
 
-<span data-ttu-id="01c3d-104">В этом сценарии лектор Таллинг каждый из оценок на конце каждого учащегося.</span><span class="sxs-lookup"><span data-stu-id="01c3d-104">In this scenario, you're an instructor tallying every student's end-of-term grades.</span></span> <span data-ttu-id="01c3d-105">Вы ввели оценки для своих назначений и тестов при переходе.</span><span class="sxs-lookup"><span data-stu-id="01c3d-105">You've been entering the scores for their assignments and tests as you go.</span></span> <span data-ttu-id="01c3d-106">Теперь можно определить учащихся "фатес".</span><span class="sxs-lookup"><span data-stu-id="01c3d-106">Now, it is time to determine the students' fates.</span></span>
+<span data-ttu-id="944a8-104">В этом сценарии лектор Таллинг каждый из оценок на конце каждого учащегося.</span><span class="sxs-lookup"><span data-stu-id="944a8-104">In this scenario, you're an instructor tallying every student's end-of-term grades.</span></span> <span data-ttu-id="944a8-105">Вы ввели оценки для своих назначений и тестов при переходе.</span><span class="sxs-lookup"><span data-stu-id="944a8-105">You've been entering the scores for their assignments and tests as you go.</span></span> <span data-ttu-id="944a8-106">Теперь можно определить учащихся "фатес".</span><span class="sxs-lookup"><span data-stu-id="944a8-106">Now, it is time to determine the students' fates.</span></span>
 
-<span data-ttu-id="01c3d-107">Вы разрабатываете сценарий, который суммирует оценки для каждой категории точек.</span><span class="sxs-lookup"><span data-stu-id="01c3d-107">You'll develop a script that totals the grades for each point category.</span></span> <span data-ttu-id="01c3d-108">Затем каждый учащийся будет назначать буквенную оценку на основе итогового значения.</span><span class="sxs-lookup"><span data-stu-id="01c3d-108">It will then assign a letter grade to each student based on the total.</span></span> <span data-ttu-id="01c3d-109">Чтобы обеспечить точность, вы добавляете пару проверок, чтобы определить, слишком низкие или высокие показатели.</span><span class="sxs-lookup"><span data-stu-id="01c3d-109">To help ensure accuracy, you'll add a couple checks to see if any individual scores are too low or high.</span></span> <span data-ttu-id="01c3d-110">Если показатель учащегося меньше нуля или больше возможного значения точки, то сценарий помечает ячейку красной заливкой, а не итоговым баллам учащегося.</span><span class="sxs-lookup"><span data-stu-id="01c3d-110">If a student's score is less than zero or more than the possible point value, the script will flag the cell with a red fill and not total that student's points.</span></span> <span data-ttu-id="01c3d-111">Это будет ясно указывает, какие записи необходимо проверить.</span><span class="sxs-lookup"><span data-stu-id="01c3d-111">This will be a clear indication of which records you need to double-check.</span></span> <span data-ttu-id="01c3d-112">Вы также добавите в оценки некоторые базовые параметры, чтобы можно было быстро просмотреть верхнюю и нижнюю часть класса.</span><span class="sxs-lookup"><span data-stu-id="01c3d-112">You'll also add some basic formatting to the grades so you can quickly view the top and bottom of the class.</span></span>
+<span data-ttu-id="944a8-107">Вы разрабатываете сценарий, который суммирует оценки для каждой категории точек.</span><span class="sxs-lookup"><span data-stu-id="944a8-107">You'll develop a script that totals the grades for each point category.</span></span> <span data-ttu-id="944a8-108">Затем каждый учащийся будет назначать буквенную оценку на основе итогового значения.</span><span class="sxs-lookup"><span data-stu-id="944a8-108">It will then assign a letter grade to each student based on the total.</span></span> <span data-ttu-id="944a8-109">Чтобы обеспечить точность, вы добавляете пару проверок, чтобы определить, слишком низкие или высокие показатели.</span><span class="sxs-lookup"><span data-stu-id="944a8-109">To help ensure accuracy, you'll add a couple checks to see if any individual scores are too low or high.</span></span> <span data-ttu-id="944a8-110">Если показатель учащегося меньше нуля или больше возможного значения точки, то сценарий помечает ячейку красной заливкой, а не итоговым баллам учащегося.</span><span class="sxs-lookup"><span data-stu-id="944a8-110">If a student's score is less than zero or more than the possible point value, the script will flag the cell with a red fill and not total that student's points.</span></span> <span data-ttu-id="944a8-111">Это будет ясно указывает, какие записи необходимо проверить.</span><span class="sxs-lookup"><span data-stu-id="944a8-111">This will be a clear indication of which records you need to double-check.</span></span> <span data-ttu-id="944a8-112">Вы также добавите в оценки некоторые базовые параметры, чтобы можно было быстро просмотреть верхнюю и нижнюю часть класса.</span><span class="sxs-lookup"><span data-stu-id="944a8-112">You'll also add some basic formatting to the grades so you can quickly view the top and bottom of the class.</span></span>
 
-## <a name="scripting-skills-covered"></a><span data-ttu-id="01c3d-113">Охваченные навыки работы со сценариями</span><span class="sxs-lookup"><span data-stu-id="01c3d-113">Scripting skills covered</span></span>
+## <a name="scripting-skills-covered"></a><span data-ttu-id="944a8-113">Охваченные навыки работы со сценариями</span><span class="sxs-lookup"><span data-stu-id="944a8-113">Scripting skills covered</span></span>
 
-- <span data-ttu-id="01c3d-114">Форматирование ячеек</span><span class="sxs-lookup"><span data-stu-id="01c3d-114">Cell formatting</span></span>
-- <span data-ttu-id="01c3d-115">Проверка ошибок</span><span class="sxs-lookup"><span data-stu-id="01c3d-115">Error checking</span></span>
-- <span data-ttu-id="01c3d-116">Регулярные выражения</span><span class="sxs-lookup"><span data-stu-id="01c3d-116">Regular expressions</span></span>
-- <span data-ttu-id="01c3d-117">Условное форматирование</span><span class="sxs-lookup"><span data-stu-id="01c3d-117">Conditional formatting</span></span>
+- <span data-ttu-id="944a8-114">Форматирование ячеек</span><span class="sxs-lookup"><span data-stu-id="944a8-114">Cell formatting</span></span>
+- <span data-ttu-id="944a8-115">Проверка ошибок</span><span class="sxs-lookup"><span data-stu-id="944a8-115">Error checking</span></span>
+- <span data-ttu-id="944a8-116">Регулярные выражения</span><span class="sxs-lookup"><span data-stu-id="944a8-116">Regular expressions</span></span>
+- <span data-ttu-id="944a8-117">Условное форматирование</span><span class="sxs-lookup"><span data-stu-id="944a8-117">Conditional formatting</span></span>
 
-## <a name="setup-instructions"></a><span data-ttu-id="01c3d-118">Инструкции по настройке</span><span class="sxs-lookup"><span data-stu-id="01c3d-118">Setup instructions</span></span>
+## <a name="setup-instructions"></a><span data-ttu-id="944a8-118">Инструкции по настройке</span><span class="sxs-lookup"><span data-stu-id="944a8-118">Setup instructions</span></span>
 
-1. <span data-ttu-id="01c3d-119">Скачайте <a href="grade-calculator.xlsx">grade-calculator.xlsx</a> в OneDrive.</span><span class="sxs-lookup"><span data-stu-id="01c3d-119">Download <a href="grade-calculator.xlsx">grade-calculator.xlsx</a> to your OneDrive.</span></span>
+1. <span data-ttu-id="944a8-119">Скачайте <a href="grade-calculator.xlsx">grade-calculator.xlsx</a> в OneDrive.</span><span class="sxs-lookup"><span data-stu-id="944a8-119">Download <a href="grade-calculator.xlsx">grade-calculator.xlsx</a> to your OneDrive.</span></span>
 
-2. <span data-ttu-id="01c3d-120">Откройте книгу с помощью Excel для веб-сайта.</span><span class="sxs-lookup"><span data-stu-id="01c3d-120">Open the workbook with Excel for the web.</span></span>
+2. <span data-ttu-id="944a8-120">Откройте книгу с помощью Excel для веб-сайта.</span><span class="sxs-lookup"><span data-stu-id="944a8-120">Open the workbook with Excel for the web.</span></span>
 
-3. <span data-ttu-id="01c3d-121">На вкладке **Автоматизация** откройте **Редактор кода**.</span><span class="sxs-lookup"><span data-stu-id="01c3d-121">Under the **Automate** tab, open the **Code Editor**.</span></span>
+3. <span data-ttu-id="944a8-121">На вкладке **Автоматизация** откройте **Редактор кода**.</span><span class="sxs-lookup"><span data-stu-id="944a8-121">Under the **Automate** tab, open the **Code Editor**.</span></span>
 
-4. <span data-ttu-id="01c3d-122">В области задач **Редактор кода** нажмите **новый скрипт** и вставьте следующий скрипт в редактор.</span><span class="sxs-lookup"><span data-stu-id="01c3d-122">In the **Code Editor** task pane, press **New Script** and paste the following script into the editor.</span></span>
+4. <span data-ttu-id="944a8-122">В области задач **Редактор кода** нажмите **новый скрипт** и вставьте следующий скрипт в редактор.</span><span class="sxs-lookup"><span data-stu-id="944a8-122">In the **Code Editor** task pane, press **New Script** and paste the following script into the editor.</span></span>
 
     ```TypeScript
     function main(workbook: ExcelScript.Workbook) {
@@ -132,8 +132,8 @@ ms.locfileid: "44878642"
         setCellValueConditionalFormatting(
           grade,
           totalRange,
-          "#9C0006",
-          "#FFC7CE",
+          "#443300",
+          "#FFEE22",
           ExcelScript.ConditionalCellValueOperator.equalTo
         );
       })
@@ -174,16 +174,16 @@ ms.locfileid: "44878642"
     }
     ```
 
-5. <span data-ttu-id="01c3d-123">Переименуйте сценарий на **Оценка калькулятора** и сохраните его.</span><span class="sxs-lookup"><span data-stu-id="01c3d-123">Rename the script to **Grade Calculator** and save it.</span></span>
+5. <span data-ttu-id="944a8-123">Переименуйте сценарий на **Оценка калькулятора** и сохраните его.</span><span class="sxs-lookup"><span data-stu-id="944a8-123">Rename the script to **Grade Calculator** and save it.</span></span>
 
-## <a name="running-the-script"></a><span data-ttu-id="01c3d-124">Выполнение скрипта</span><span class="sxs-lookup"><span data-stu-id="01c3d-124">Running the script</span></span>
+## <a name="running-the-script"></a><span data-ttu-id="944a8-124">Выполнение скрипта</span><span class="sxs-lookup"><span data-stu-id="944a8-124">Running the script</span></span>
 
-<span data-ttu-id="01c3d-125">Запустите сценарий **калькулятора** на листе.</span><span class="sxs-lookup"><span data-stu-id="01c3d-125">Run the **Grade Calculator** script on the only worksheet.</span></span> <span data-ttu-id="01c3d-126">Сценарий выполнит итоговые оценки и присвоит каждому студенте буквенную оценку.</span><span class="sxs-lookup"><span data-stu-id="01c3d-126">The script will total the grades and assign each student a letter grade.</span></span> <span data-ttu-id="01c3d-127">Если для какого-либо из конкретных оценок задано больше баллов, чем стоит на назначении или тестировании, то несвязанное с ним помечается красным, а итоговое значение не вычисляется.</span><span class="sxs-lookup"><span data-stu-id="01c3d-127">If any individual grades have more points than the assignment or test is worth, then the offending grade is marked red and the total is not calculated.</span></span>
+<span data-ttu-id="944a8-125">Запустите сценарий **калькулятора** на листе.</span><span class="sxs-lookup"><span data-stu-id="944a8-125">Run the **Grade Calculator** script on the only worksheet.</span></span> <span data-ttu-id="944a8-126">Сценарий выполнит итоговые оценки и присвоит каждому студенте буквенную оценку.</span><span class="sxs-lookup"><span data-stu-id="944a8-126">The script will total the grades and assign each student a letter grade.</span></span> <span data-ttu-id="944a8-127">Если для какого-либо из конкретных оценок задано больше баллов, чем стоит на назначении или тестировании, то несвязанное с ним помечается красным, а итоговое значение не вычисляется.</span><span class="sxs-lookup"><span data-stu-id="944a8-127">If any individual grades have more points than the assignment or test is worth, then the offending grade is marked red and the total is not calculated.</span></span> <span data-ttu-id="944a8-128">Кроме того, все оценки "A" выделены зеленым цветом, а "оценки" и "F" выделены в желтом цвете.</span><span class="sxs-lookup"><span data-stu-id="944a8-128">Also, any 'A' grades are highlighted in green, while 'D' and 'F' grades are highlighted in yellow.</span></span>
 
-### <a name="before-running-the-script"></a><span data-ttu-id="01c3d-128">Перед выполнением скрипта</span><span class="sxs-lookup"><span data-stu-id="01c3d-128">Before running the script</span></span>
+### <a name="before-running-the-script"></a><span data-ttu-id="944a8-129">Перед выполнением скрипта</span><span class="sxs-lookup"><span data-stu-id="944a8-129">Before running the script</span></span>
 
 ![Лист, показывающий строки оценок для учащихся.](../../images/scenario-grade-calculator-before.png)
 
-### <a name="after-running-the-script"></a><span data-ttu-id="01c3d-130">После выполнения скрипта</span><span class="sxs-lookup"><span data-stu-id="01c3d-130">After running the script</span></span>
+### <a name="after-running-the-script"></a><span data-ttu-id="944a8-131">После выполнения скрипта</span><span class="sxs-lookup"><span data-stu-id="944a8-131">After running the script</span></span>
 
 ![Лист с данными оценки учащегося с недопустимыми ячейками в красном итоге для допустимых строк учащихся.](../../images/scenario-grade-calculator-after.png)
