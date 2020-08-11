@@ -1,14 +1,14 @@
 ---
 title: 'Пример сценария Office Scripts: Калькулятор производительности'
 description: Пример, который определяет процентные и буквенные оценки для класса учащихся.
-ms.date: 06/01/2020
+ms.date: 07/24/2020
 localization_priority: Normal
-ms.openlocfilehash: 6f8e3db756c72cf1d0e2f774ccd819c041f0c42d
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
+ms.openlocfilehash: 4e488c6cc67bda9122b88c55070654632d9c7fa2
+ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878642"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "46616745"
 ---
 # <a name="office-scripts-sample-scenario-grade-calculator"></a>Пример сценария Office Scripts: Калькулятор производительности
 
@@ -132,8 +132,8 @@ ms.locfileid: "44878642"
         setCellValueConditionalFormatting(
           grade,
           totalRange,
-          "#9C0006",
-          "#FFC7CE",
+          "#443300",
+          "#FFEE22",
           ExcelScript.ConditionalCellValueOperator.equalTo
         );
       })
@@ -178,7 +178,7 @@ ms.locfileid: "44878642"
 
 ## <a name="running-the-script"></a>Выполнение скрипта
 
-Запустите сценарий **калькулятора** на листе. Сценарий выполнит итоговые оценки и присвоит каждому студенте буквенную оценку. Если для какого-либо из конкретных оценок задано больше баллов, чем стоит на назначении или тестировании, то несвязанное с ним помечается красным, а итоговое значение не вычисляется.
+Запустите сценарий **калькулятора** на листе. Сценарий выполнит итоговые оценки и присвоит каждому студенте буквенную оценку. Если для какого-либо из конкретных оценок задано больше баллов, чем стоит на назначении или тестировании, то несвязанное с ним помечается красным, а итоговое значение не вычисляется. Кроме того, все оценки "A" выделены зеленым цветом, а "оценки" и "F" выделены в желтом цвете.
 
 ### <a name="before-running-the-script"></a>Перед выполнением скрипта
 

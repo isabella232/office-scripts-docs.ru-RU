@@ -1,5 +1,3 @@
-[!INCLUDE [Preview note](../includes/preview-note.md)]
-
 Перед началом работы с этим учебником у вас должен быть доступ к сценариям Office. Для этого требуется следующее:
 
 - [Excel в Интернете](https://www.office.com/launch/excel).

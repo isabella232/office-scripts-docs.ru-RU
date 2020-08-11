@@ -1,14 +1,14 @@
 ---
 title: Среда редактора кода сценариев Office
 description: Сведения о необходимых компонентах и среде для сценариев Office в Excel в Интернете.
-ms.date: 07/10/2020
+ms.date: 07/23/2020
 localization_priority: Normal
-ms.openlocfilehash: 643ea2d5bd69adf4311546465ccd65c08dacf4b4
-ms.sourcegitcommit: ebd1079c7e2695ac0e7e4c616f2439975e196875
+ms.openlocfilehash: 6a496d6c245879eae60e60b9b0cd6fced9e9259a
+ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "45160497"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "46616698"
 ---
 # <a name="office-scripts-code-editor-environment"></a>Среда редактора кода сценариев Office
 
@@ -36,10 +36,6 @@ IntelliSense — это функция редактора кода, котора
 ## <a name="external-library-support"></a>Поддержка внешних библиотек
 
 Сценарии Office не поддерживают использование внешних сторонних библиотек JavaScript. В настоящий момент невозможно вызвать любую библиотеку, кроме API сценариев Office из скрипта. У вас по-прежнему есть доступ ко всем [встроенным объектам JavaScript](../develop/javascript-objects.md), например [Math](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Math).
-
-## <a name="browser-support"></a>Поддержка браузеров
-
-Сценарии Office работают в любом браузере, [поддерживающем Office для Интернета](https://support.microsoft.com/office/ad1303e0-a318-47aa-b409-d3a5eb44e452). Однако некоторые функции JavaScript не поддерживаются в Internet Explorer 11 (IE 11). Все функции, реализованные в [ES6 или более поздней версии](https://www.w3schools.com/Js/js_es6.asp) , не будут работать с IE 11. Если пользователи в вашей организации по-прежнему используют этот браузер, обязательно протестируйте сценарии в этой среде при их совместном использовании.
 
 ## <a name="see-also"></a>См. также
 

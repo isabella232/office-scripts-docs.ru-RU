@@ -1,14 +1,14 @@
 ---
 title: Устранение неполадок в сценариях Office
 description: Советы и методы отладки сценариев Office, а также справочные ресурсы.
-ms.date: 05/14/2020
+ms.date: 07/23/2020
 localization_priority: Normal
-ms.openlocfilehash: 6448980eec45214a589444229db0fd781b9fea13
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
+ms.openlocfilehash: 00727b497d49a2d1d3f9c61e259b8d8d75028a59
+ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878621"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "46616684"
 ---
 # <a name="troubleshooting-office-scripts"></a>Устранение неполадок в сценариях Office
 
@@ -31,6 +31,15 @@ console.log(myRange.getAddress());
 
 Если при выполнении сценария Excel возникла проблема, она выдает ошибку. Появится всплывающее сообщение с вопросом, следует ли **просматривать журналы**. Нажмите эту кнопку, чтобы открыть консоль и отобразить все ошибки.
 
+## <a name="automate-tab-not-appearing"></a>Не отображается вкладка "Автоматизация"
+
+Выполните следующие действия, чтобы устранить все неполадки, связанные с вкладкой **Автоматизация** , в Excel для Интернета.
+
+1. [Убедитесь, что лицензия microsoft 365 включает сценарии Office](../overview/excel.md#requirements).
+1. [Попросите администратора включить эту функцию](https://support.office.com/article/office-scripts-settings-in-m365-19d3c51a-6ca2-40ab-978d-60fa49554dcf).
+1. [Убедитесь, что ваш браузер поддерживается](platform-limits.md#browser-support).
+1. [Убедитесь, что сторонние файлы Cookie включены](platform-limits.md#third-party-cookies).
+
 ## <a name="help-resources"></a>Справочные материалы
 
 [Переполнение стека](https://stackoverflow.com/questions/tagged/office-scripts) — это сообщество разработчиков, которые могут помочь при возникновении проблем с написанием кода. Часто вы сможете найти решение проблемы с помощью быстрого поиска переполнения стека. Если это не так, задайте свой вопрос и пометьте его тегом "Office – Scripts". Запомните, что вы создаете *сценарий*Office, а не *надстройку*Office.
@@ -43,5 +52,6 @@ console.log(myRange.getAddress());
 
 - [Сценарии Office в Excel в Интернете](../overview/excel.md)
 - [Основные сведения о сценариях для сценариев Office в Excel в Интернете](../develop/scripting-fundamentals.md)
-- [Отменить эффекты сценария Office](undo.md)
+- [Пределы платформы с помощью сценариев Office](platform-limits.md)
 - [Повышение производительности сценариев Office](../develop/web-client-performance.md)
+- [Отмена эффектов сценария Office](undo.md)
