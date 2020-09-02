@@ -3,12 +3,12 @@ title: Устранение неполадок в сценариях Office
 description: Советы и методы отладки сценариев Office, а также справочные ресурсы.
 ms.date: 07/23/2020
 localization_priority: Normal
-ms.openlocfilehash: 00727b497d49a2d1d3f9c61e259b8d8d75028a59
-ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
+ms.openlocfilehash: 0a2c9ab209bc36e8ba2bdb25a6ab79d9f900f29a
+ms.sourcegitcommit: e9a8ef5f56177ea9a3d2fc5ac636368e5bdae1f4
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "46616684"
+ms.lasthandoff: 09/01/2020
+ms.locfileid: "47321595"
 ---
 # <a name="troubleshooting-office-scripts"></a>Устранение неполадок в сценариях Office
 
@@ -33,10 +33,10 @@ console.log(myRange.getAddress());
 
 ## <a name="automate-tab-not-appearing"></a>Не отображается вкладка "Автоматизация"
 
-Выполните следующие действия, чтобы устранить все неполадки, связанные с вкладкой **Автоматизация** , в Excel для Интернета.
+Выполните следующие действия, чтобы устранить все неполадки, связанные с вкладкой **Автоматизация** , в Excel в Интернете.
 
 1. [Убедитесь, что лицензия microsoft 365 включает сценарии Office](../overview/excel.md#requirements).
-1. [Попросите администратора включить эту функцию](https://support.office.com/article/office-scripts-settings-in-m365-19d3c51a-6ca2-40ab-978d-60fa49554dcf).
+1. [Попросите администратора включить эту функцию](/microsoft-365/admin/manage/manage-office-scripts-settings).
 1. [Убедитесь, что ваш браузер поддерживается](platform-limits.md#browser-support).
 1. [Убедитесь, что сторонние файлы Cookie включены](platform-limits.md#third-party-cookies).
 
