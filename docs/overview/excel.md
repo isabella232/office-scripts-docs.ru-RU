@@ -1,14 +1,14 @@
 ---
 title: Сценарии Office в Excel в Интернете
 description: Краткое введение в регистратор действий и редактор кода для сценариев Office.
-ms.date: 07/21/2020
+ms.date: 09/29/2020
 localization_priority: Priority
-ms.openlocfilehash: 6b60e46c13a211dc793638bcca6535f04a529096
-ms.sourcegitcommit: e9a8ef5f56177ea9a3d2fc5ac636368e5bdae1f4
+ms.openlocfilehash: 965e28be285d59d79d46fe005ab16f29b271041f
+ms.sourcegitcommit: ce72354381561dc167ea0092efd915642a9161b3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/01/2020
-ms.locfileid: "47321587"
+ms.lasthandoff: 09/30/2020
+ms.locfileid: "48319674"
 ---
 # <a name="office-scripts-in-excel-on-the-web-preview"></a>Сценарии Office в Excel в Интернете (предварительный просмотр)
 
@@ -27,6 +27,7 @@ ms.locfileid: "47321587"
 Для использования сценариев Office вам потребуются следующие компоненты.
 
 1. [Excel в Интернете](https://www.office.com/launch/excel) (другие платформы, например классическая версия, не поддерживаются).
+1. OneDrive для бизнеса.
 1. Сценарии Office, [включенные администратором](/microsoft-365/admin/manage/manage-office-scripts-settings).
 1. Любая коммерческая или образовательная лицензия Microsoft 365 с доступом к классическим приложениям Microsoft 365 Office, таким как:
 
@@ -65,7 +66,10 @@ ms.locfileid: "47321587"
 
 Сценариями Office можно поделиться с другими пользователям книги Excel. Когда вы делитесь сценарием с другими пользователями в книге, он прикрепляется к книге. Ваши сценарии хранятся в вашем хранилище OneDrive, а когда вы делитесь сценарием, в книге, которую вы открыли, создается ссылка на него.
 
-Дополнительные сведения об общем доступе и отмене общего доступа к сценариям см. в статье [Общий доступ к сценариям Office в веб-программе Excel](https://support.microsoft.com/office/sharing-office-scripts-in-excel-for-the-web-226eddbc-3a44-4540-acfe-fccda3d1122b?storagetype=live&ui=en-US&rs=en-US&ad=US).
+Дополнительные сведения об общем доступе и отмене общего доступа к сценариям см. в статье [Общий доступ к сценариям Office в веб-программе Excel](https://support.microsoft.com/office/sharing-office-scripts-in-excel-for-the-web-226eddbc-3a44-4540-acfe-fccda3d1122b).
+
+> [!NOTE]
+> Так как сценарии Office хранятся в OneDrive пользователя, на них распространяются такие же политики хранения и удаления. Сведения о том, как обрабатывать сценарии, созданные и предоставленные пользователем, удаляемым из вашей организации, см. в статье [Хранение и удаление в OneDrive](/onedrive/retention-and-deletion).
 
 ## <a name="connecting-office-scripts-to-power-automate"></a>Подключение сценариев Office к Power Automate
 
