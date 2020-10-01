@@ -1,16 +1,16 @@
 ---
-title: Поддержка вызовов внешнего API в сценариях Office
+title: Поддержка внешнего вызова API в сценариях Office
 description: Поддержка и рекомендации по выполнению вызовов внешнего API в скрипте Office.
-ms.date: 06/25/2020
+ms.date: 09/24/2020
 localization_priority: Normal
-ms.openlocfilehash: ec8281551cbe7c500eee40ec86067e5efbfcfc31
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
-ms.translationtype: Auto
+ms.openlocfilehash: fa77e606e2b3ab90144507660d71561b278e82e5
+ms.sourcegitcommit: ce72354381561dc167ea0092efd915642a9161b3
+ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878820"
+ms.lasthandoff: 09/30/2020
+ms.locfileid: "48319632"
 ---
-# <a name="external-api-call-support-in-office-scripts"></a>Поддержка вызовов внешнего API в сценариях Office
+# <a name="external-api-call-support-in-office-scripts"></a>Поддержка внешнего вызова API в сценариях Office
 
 Платформа сценариев Office не поддерживает вызовы [внешних API](https://developer.mozilla.org/docs/Web/API). Тем не менее, эти вызовы могут выполняться в соответствии с правильными обстоятельствами. Внешние звонки можно выполнить только через клиент Excel, а не через автоматизированное управление питанием [в нормальных условиях](#external-calls-from-power-automate).
 
@@ -42,7 +42,7 @@ async function main(workbook: ExcelScript.Workbook): Promise <void> {
 При запуске скрипта с помощью Power автоматизиру все вызовы внешнего API завершатся с ошибками. Это различие между выполнением скрипта с помощью клиента Excel и автоматизацией управления. Прежде чем приступать к их созданию, обязательно проверьте свои сценарии на наличие таких ссылок.
 
 > [!WARNING]
-> Сбой внешних вызовов [Microsoft Excel Online Connector](/connectors/excelonlinebusiness) в Power Автоматизация состоит в том, чтобы помочь приподнятое существующим политикам защиты от потери данных. Тем не менее скрипты, выполняемые с помощью автоматизации автоматизации, выполняются в рамках вашей организации, а не в брандмауэрах Организации. Для дополнительной защиты от злонамеренных пользователей в этой внешней среде администратор может управлять использованием сценариев Office. Администратор может отключить соединитель Excel Online в Power автоматизирует или отключить сценарии Office для Excel в Интернете с помощью [сценариев Office](https://support.microsoft.com/office/19d3c51a-6ca2-40ab-978d-60fa49554dcf).
+> Сбой внешних вызовов [Microsoft Excel Online Connector](/connectors/excelonlinebusiness) в Power Автоматизация состоит в том, чтобы помочь приподнятое существующим политикам защиты от потери данных. Тем не менее скрипты, выполняемые с помощью автоматизации автоматизации, выполняются в рамках вашей организации, а не в брандмауэрах Организации. Для дополнительной защиты от злонамеренных пользователей в этой внешней среде администратор может управлять использованием сценариев Office. Администратор может отключить соединитель Excel Online в Power автоматизирует или отключить сценарии Office для Excel в Интернете с помощью [сценариев Office](/microsoft-365/admin/manage/manage-office-scripts-settings).
 
 ## <a name="see-also"></a>См. также
 

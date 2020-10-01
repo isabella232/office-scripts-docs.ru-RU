@@ -3,12 +3,12 @@ title: Различия между сценариями Office и надстро
 description: Различия в поведении и API между сценариями Office и надстройками Office.
 ms.date: 06/01/2020
 localization_priority: Normal
-ms.openlocfilehash: fc2029780190672c633e00e26f44273e4311c754
-ms.sourcegitcommit: aec3c971c6640429f89b6bb99d2c95ea06725599
+ms.openlocfilehash: ddac6cc68874da34ae76c66a5c5b84ffa7a60eec
+ms.sourcegitcommit: ce72354381561dc167ea0092efd915642a9161b3
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "44878663"
+ms.lasthandoff: 09/30/2020
+ms.locfileid: "48319653"
 ---
 # <a name="differences-between-office-scripts-and-office-add-ins"></a>Различия между сценариями Office и надстройками Office
 
@@ -26,11 +26,11 @@ ms.locfileid: "44878663"
 
 В настоящее время скрипты Office поддерживаются только для Excel в Интернете. Все операции записи, редактирования и запуска выполняются на веб-платформе.
 
-## <a name="apis"></a>Интерфейсы API
+## <a name="apis"></a>Программные интерфейсы
 
 Нет синхронной версии API JavaScript для Office для надстроек Office. Стандартные API сценариев Office уникальны для платформы и имеют множество оптимизаций и изменений, чтобы избежать использования `load` / `sync` парадигмы.
 
-Некоторые [API JavaScript для Excel](/javascript/api/excel?view=excel-js-preview) совместимы с [асинхронными API сценариев Office](../develop/excel-async-model.md). Некоторые примеры и блоки кода надстройки можно перенести в `Excel.run` блоки с минимальным переводом. Несмотря на то, что две платформы имеют несколько таких функций, существуют разрывы. Два основных набора API, у которых есть надстройки Office, но скрипты Office не являются событиями и общими API.
+Некоторые [API JavaScript для Excel](/javascript/api/excel?view=excel-js-preview&preserve-view=true) совместимы с [асинхронными API сценариев Office](../develop/excel-async-model.md). Некоторые примеры и блоки кода надстройки можно перенести в `Excel.run` блоки с минимальным переводом. Несмотря на то, что две платформы имеют несколько таких функций, существуют разрывы. Два основных набора API, у которых есть надстройки Office, но скрипты Office не являются событиями и общими API.
 
 ### <a name="events"></a>События
 

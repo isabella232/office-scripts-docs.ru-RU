@@ -1,6 +1,6 @@
 # <a name="office-scripts-in-excel-on-the-web-documentation"></a>Сценарии Office в Excel в веб-документации
 
-Добро пожаловать в репозиторий документации по сценариям Office. В этом репозитории вы найдете исходные файлы документации для сценариев Office и пошаговые руководства. Рекомендуем просматривать эти материалы на сайте [docs.microsoft.com](https://docs.microsoft.com/office-scripts-docs).
+Добро пожаловать в репозиторий документации по сценариям Office. В этом репозитории вы найдете исходные файлы документации для сценариев Office и пошаговые руководства. Рекомендуем просматривать эти материалы на сайте [docs.microsoft.com](https://docs.microsoft.com/office/dev/scripts).
 
 > **Примечание**: исходные файлы справочной документации по API сценариев Office можно найти в репозитории [Office-Scripts-Reference-Reference](https://github.com/OfficeDev/office-scripts-docs-reference) . Эти API содержат все возможные операции Excel для сценариев.
 
@@ -23,8 +23,8 @@
 
 Если ваша неполадка не связана с документацией по сценариям Office, отправьте ее по одному из следующих каналов:
 
-- Чтобы задать вопрос о проектировании сценариев Office или API Office. js, которые запускают скрипты Office, разместите свой вопрос в разделе переполнение стека и пометьте его тегом "https://stackoverflow.com/questions/tagged/office-scripts)Office-Scripts" (.
-- Чтобы сообщить о проблемах с API Office. js, создайте эту ошибку в [репозитории OfficeDev/Office-JS](https://github.com/OfficeDev/office-js), который участники группы разработчиков продукта отслеживают проблемы, обнаруженные клиентами.
+- Чтобы задать вопрос о проектировании сценариев Office или API Office.js, выполняющих сценарии Office, разместите свой вопрос в разделе переполнение стека и пометьте его тегом "Office-Scripts" ( https://stackoverflow.com/questions/tagged/office-scripts) .
+- Чтобы сообщить о неполадке с помощью API Office.js, создайте эту ошибку в [репозитории OfficeDev/Office-JS](https://github.com/OfficeDev/office-js), который участники группы разработчиков продукта отслеживают проблемы, обнаруженные клиентами.
 - Чтобы отправить запрос на функции для сценариев Office, опубликовать свою идею на [странице голосовой связи пользователя](https://excel.uservoice.com/forums/274580-excel-for-the-web?category_id=143439), или если запрос компонента уже существует, добавьте свой голос.
 
 ## <a name="copyright"></a>Авторское право
