@@ -1,14 +1,14 @@
 ---
 title: Требования к платформе и требования для сценариев Office
 description: Пределы ресурсов и поддержка браузеров для сценариев Office при использовании с Excel в Интернете
-ms.date: 07/23/2020
+ms.date: 10/09/2020
 localization_priority: Normal
-ms.openlocfilehash: 6e297cba0b9f984f2d541cc3c441a666f9ebfcef
-ms.sourcegitcommit: ff7fde04ce5a66d8df06ed505951c8111e2e9833
+ms.openlocfilehash: df468192f443b912e26411e46c9f953e046e55ec
+ms.sourcegitcommit: 42fa3b629c93930b4e73e9c4c01d0c8bdf6d7487
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "46618163"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "48411559"
 ---
 # <a name="platform-limits-and-requirements-with-office-scripts"></a>Требования к платформе и требования для сценариев Office
 
@@ -17,6 +17,8 @@ ms.locfileid: "46618163"
 ## <a name="browser-support"></a>Поддержка браузеров
 
 Сценарии Office работают в любом браузере, [поддерживающем Office для Интернета](https://support.microsoft.com/office/ad1303e0-a318-47aa-b409-d3a5eb44e452). Однако некоторые функции JavaScript не поддерживаются в Internet Explorer 11 (IE 11). Все функции, реализованные в [ES6 или более поздней версии](https://www.w3schools.com/Js/js_es6.asp) , не будут работать с IE 11. Если пользователи в вашей организации по-прежнему используют этот браузер, обязательно протестируйте сценарии в этой среде при их совместном использовании.
+
+[!INCLUDE [Teams support note](../includes/teams-support-note.md)]
 
 ### <a name="third-party-cookies"></a>Сторонние файлы cookie
 
