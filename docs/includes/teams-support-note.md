@@ -1,0 +1,2 @@
+> [!IMPORTANT]
+> <span data-ttu-id="1b4c9-101">При использовании Excel в Microsoft Office сценарии Office поддерживаются только в Teams в Интернете (не в Microsoft Teams для Windows, Mac, iOS и Android).</span><span class="sxs-lookup"><span data-stu-id="1b4c9-101">When using Excel with Teams, Office Scripts are only supported in Teams on the web (not Teams on Windows, Mac, iOS, or Android).</span></span>
